@@ -1,0 +1,66 @@
+<template>
+    <div>
+        <v-container>
+            <h2>Delete Restaurant Menu</h2>
+            <br>
+            <v-text-field
+            v-model="menuId"
+            label="Enter menuId"
+            prepend-icon="mdi-bio"
+            />
+            <br>
+            <v-btn @click="deleteMenu">Delete Menu 
+            </v-btn>
+        </v-container>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+// import router from "@/router";
+import cookies from "vue-cookies";
+    export default {
+        name: "MenuDelete",
+        data() {
+            return {
+                apiKey: process.env.VUE_APP_API_KEY,
+                // name: "",
+                // description: "",-------------------> The delete request actually worked once i commented out the other return variables 
+                // price: [],                           // Pretty cool, same concept as client delete just needed the process.env.api.key
+                // menuId: [],
+            }
+        },
+        methods: {
+            deleteMenu() {
+                axios.request({
+                    method : "DELETE",
+                    url: "https://foodierest.ml/api/menu",
+                    headers: {
+                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        'token' : cookies.get('restaurantToken'),
+                    },
+                    data : {
+                        name: this.name,
+                        description: this.description,
+                        price: this.price,
+                        menuId: this.menuId,
+                    },
+                    }).then((response)=>{
+                    console.log(response);
+                    console.log("Successful update");
+                    alert('Menu item deleted!!')
+                    // cookies.remove(`restaurantToken`)
+                    // cookies.remove(`restaurantID`)---------------->//Unnecessary router push imo
+                    // router.push(`/loginRestaurant`)
+                    }).catch((error)=>{
+                    console.log(error);
+                    alert('Failed Delete');
+                    })
+            }
+        },
+    }
+</script>
+
+<style scoped>
+
+</style>

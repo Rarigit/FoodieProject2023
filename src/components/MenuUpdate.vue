@@ -1,0 +1,85 @@
+<template>
+    <div>
+        <v-container>
+            <h2>Edit Restaurant Menu</h2>
+            <v-form>
+                <v-text-field
+                v-model="name"
+                label="name"
+                prepend-icon="mdi-account-circle"
+                />
+                <v-text-field
+                v-model="description"
+                label="description"
+                prepend-icon="mdi-map-marker"
+                />
+                <v-text-field
+                v-model="price"
+                label="Price"
+                prepend-icon="mdi-bio"
+                />
+                <!-- Just adding this text-field on UI is way easier than passing props or trying to use cookies -->
+                <v-text-field
+                v-model="menuId"
+                label="menuId"
+                prepend-icon="mdi-bio"
+                />
+                <v-btn @click="editMenu">Save changes
+                </v-btn>
+            </v-form>
+            <br>
+        </v-container>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+import router from "@/router";
+import cookies from "vue-cookies";
+// import MenuProfile from "@/views/MenuProfile.vue"; ---nope doesn't work cant import a view into a component
+    export default {
+        name: "MenuUpdate",
+        data() {
+            return {
+                apiKey: process.env.VUE_APP_API_KEY,
+                name: "",
+                description: "",
+                price: [],
+                menuId: [],
+            }
+        },
+        methods: {
+            editMenu() {
+                // console.log(menuId);
+                axios.request({
+                    method : "PATCH",
+                    url: "https://foodierest.ml/api/menu",
+                    headers: {
+                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        'token' : cookies.get('restaurantToken'),
+                    },
+                    data : { //Correct Method. Mark confirmed.
+                        name: this.name,
+                        description: this.description,
+                        price: this.price,
+                        menuId: this.menuId,
+                    }
+                    }).then((response)=>{
+                    console.log(response);
+                    console.log("Successful update");
+                    alert('User info. updated!!')
+                    // cookies.remove(`restaurantToken`)---------> Unnecessary redirect imo. Need to learn how to update or reload page upon completed axios call.
+                    // cookies.remove(`restaurantID`)
+                    router.push(`/loginRestaurant`)
+                    }).catch((error)=>{
+                    console.log(error);
+                    alert('Failed edit');
+                    })
+            }
+        },
+    }
+</script>
+
+<style scoped>
+
+</style>
