@@ -2,39 +2,18 @@
     <div>
         <v-container>
             {{ $route.params.menuId }}
-            <!-- Need to work on this and get more menu items to display in the correct format. but it works at least!!  -->
-            <!-- How do i get images on here man next to my menu items and restaurants especially my menu items---- >Figured it out. All g can close comment out now!! -->
             <h2 v-for= "menu in menus" :key="menu.menuId">
-                <!-- <h3 v-if="$route.params.menuId"> -->
-                    {{menu.name}}
-                    <!-- <h3>{{$route.params.restaurantId}}</h3> -->
-                    <br>
-                    {{menu.description}}
-                    <br>
-                    {{menu.price}}
-                    <br>
-                    {{menu.menuId}}
-                    <br>
-                    <img 
-                    :src="menu.imageUrl" alt="">
-                <!-- </h3> -->
+                {{menu.name}}
+                <br>
+                {{menu.description}}
+                <br>
+                {{menu.price}}
+                <br>
+                {{menu.menuId}}
+                <br>
+                <img 
+                :src="menu.imageUrl" alt="">
             </h2>
-            <!-- <h2 v-for= "menu in menus" :key="menu.menuId"> -->
-                <!-- <h3 v-if="menuId = this.menuId"> -->
-                    <!-- {{menu.name}}
-                    <br>
-                    {{menu.description}}
-                    <br>
-                    {{menu.price}}
-                    <br>
-                    {{menu.menuId}}
-                    <br>
-                    <img 
-                    :src="menu.imageUrl" alt="">
-            </h2> -->
-            <br>
-            <!-- <v-btn @click="getMenu">Get Menus
-            </v-btn> -->
             <br>
             <br>
             <v-btn @click="logOut">LogOut

@@ -12,7 +12,8 @@
                     {{restaurant.email}}
                     {{restaurant.phoneNum}}
                     <router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</router-link>
-                <!-- <router-link :to="{name: 'menus', params:{id: restaurant.restaurantId}}">Yoo</router-link> -->
+        <!-- How this works is the router link is binded to the path menuPublic which is a string plus the variable restaurant.restaurantId. This will then route  
+        to the menuPublic/Number page that matches that restaurant id value. It will then reveal the mustache html within the curly brackets.          -->
                 </h3>
             </h2>
             <router-link to="/menuPublic/">Go to Menus</router-link>
