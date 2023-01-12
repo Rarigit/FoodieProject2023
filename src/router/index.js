@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LoginClient from "@/views/LoginClient.vue"
+import LoginClientHome from "@/views/LoginClientHome.vue"
 import LoginRestaurant from "@/views/LoginRestaurant.vue"
 import RegistrationRestaurant from "@/components/RegistrationRestaurant.vue"
-import HomePage from "@/components/HomePage.vue"
+import RegisterClient from "@/components/RegisterClient.vue"
 import RestaurantProfile from "@/views/RestaurantProfile.vue"
 import ClientProfile from "@/views/ClientProfile.vue"
 import ClientUpdate from "@/components/ClientUpdate.vue"
@@ -16,6 +16,9 @@ import MenuProfile from "@/views/MenuProfile.vue"
 import MenuUpdate from "@/components/MenuUpdate.vue"
 import MenuDelete from "@/components/MenuDelete.vue"
 import MenuPublic from "@/components/MenuPublic.vue"
+import OrderRegister from "@/components/OrderRegister.vue"
+import HeaderProject from "@/components/HeaderProject.vue"
+import FooterProject from "@/components/FooterProject.vue"
 
 
 
@@ -23,16 +26,16 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: `/`,
-    component: HomePage
+    path: `/registerClient`,
+    component: RegisterClient
   },
   {
     path: `/loginRestaurant`,
     component: LoginRestaurant
   },
   {
-    path: "/loginClient",
-    component: LoginClient
+    path: "/",
+    component: LoginClientHome//This is the new home path
   },
   {
     path: "/registerRestaurant",
@@ -86,12 +89,20 @@ const routes = [
     path: "/menuPublic/:menuId",
     component: MenuPublic,
   },
-  // {
-  //   path: "/menu/:menuId",
-  //   component: Menu
-  // }
+  {
+    path: "/orderRegister",
+    component: OrderRegister,
+  },
+  {
+    path: "/header",
+    component: HeaderProject,
+  },
+  {
+    path: "/footer",
+    component: FooterProject,
+  },
 ]
-// const Menu = {template: '<h3>Menu {{route.params.menuId}} </h3>'}
+
 const router = new VueRouter({
   routes
   

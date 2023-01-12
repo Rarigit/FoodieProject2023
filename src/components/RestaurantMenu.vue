@@ -19,7 +19,7 @@
                 label="Price"
                 prepend-icon="mdi-bio"
                 />
-                <v-btn @click="createMenu">Create Menu Item
+                <v-btn color="green" large class="styleButton" @click="createMenu">Create Menu Item
                 </v-btn>
             </v-form>
         </v-container>
@@ -64,8 +64,9 @@ import cookies from "vue-cookies";
                     },
                     }).then((response)=>{
                     console.log(response);
-                    // let newMenu  = response.data.menu.menuId;//Finally got it. It has to match letter for letter with the data names in the console response
-                    // cookies.set(`menuID`, newMenu)
+                    // let menuToken  = response.data.menuId;
+                    // cookies.set('menuID', response.data.menuId);
+                    // console.log(menuToken);
                     console.log("Menu item created");
                     alert('Menu item created!')
                     // router.push(`/restMenu`).....Don't push to page as the form just shows up.
@@ -85,5 +86,9 @@ import cookies from "vue-cookies";
 </script>
 
 <style scoped>
-
+.styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
+    }
 </style>

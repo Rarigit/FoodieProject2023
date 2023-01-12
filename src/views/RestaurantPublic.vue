@@ -1,27 +1,60 @@
 <template>
-    <div>
+    <div class="bodyWrap">
+        <HeaderProject/>
         <v-container>
-            <v-btn @click="getStore">See Restaurants
-            </v-btn>
-            <h2 v-for="restaurant,index in restaurants" :key="index">
-                <h3 v-if="restaurant">
-                    {{restaurant.name}}
-                    {{restaurant.address}}
-                    {{restaurant.bio}}
-                    {{restaurant.city}}
-                    {{restaurant.email}}
-                    {{restaurant.phoneNum}}
-                    <router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</router-link>
-        <!-- How this works is the router link is binded to the path menuPublic which is a string plus the variable restaurant.restaurantId. This will then route  
-        to the menuPublic/Number page that matches that restaurant id value. It will then reveal the mustache html within the curly brackets.          -->
-                </h3>
-            </h2>
-            <router-link to="/menuPublic/">Go to Menus</router-link>
-            <!-- <MenuPublic/> -->
+            <h1>Select a Restaurant</h1>
             <br>
-            <v-btn @click="logOut">Log Out 
-            </v-btn>
+            <h2>Select via Store ID</h2>
+            <h2 v-for="restaurant,index in restaurants" :key="index">
+                    <h3 v-if="restaurant">
+                        <v-row no-gutters>
+                            <v-col class="d-flex">
+                                <br>
+                                <img class="storeImage" :src="restaurant.bannerUrl" alt="Picture">
+                                <v-spacer></v-spacer>
+                                <v-spacer></v-spacer>
+                                {{restaurant.name}}
+                                <v-spacer></v-spacer>
+                                <v-spacer></v-spacer>
+                                {{restaurant.address}}
+                                <v-spacer></v-spacer>
+                                <v-spacer></v-spacer>
+                                {{restaurant.bio}}
+                                <v-spacer></v-spacer>
+                                <v-spacer></v-spacer>
+                                {{restaurant.city}}
+                                <v-spacer></v-spacer>
+                                <v-spacer></v-spacer>
+                                {{restaurant.email}}
+                                <v-spacer></v-spacer>
+                                <v-spacer></v-spacer>
+                                {{restaurant.phoneNum}}
+                            </v-col>
+                        </v-row>
+                        <v-spacer></v-spacer>
+                        <v-spacer></v-spacer>
+                        <v-row>
+                            <v-btn class="mx-auto" color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn>
+                        </v-row>
+                        <!-- <v-btn color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn> -->
+                        <br>
+                    </h3>
+            </h2>
+            <br>
+            <br>
+            <br>
+            <v-row>
+                <v-btn class="mx-auto styleButton" large @click="logOut">Return Home</v-btn> 
+            </v-row>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </v-container>
+        <FooterProject/>
     </div>
 </template>
 
@@ -29,13 +62,16 @@
 import axios from "axios";
 import router from '@/router';
 import cookies from "vue-cookies";
-// import MenuPublic from "@/components/MenuPublic.vue";
+import HeaderProject from "@/components/HeaderProject.vue";
+import FooterProject from "@/components/FooterProject.vue";
+
 
     export default {
         name: "RestaurantPublic",
-        // components: {
-        //     MenuPublic,
-        // },
+        components: {
+            HeaderProject,
+            FooterProject,
+        },
         data() {
             return {
                 apiKey: process.env.VUE_APP_API_KEY,
@@ -49,43 +85,54 @@ import cookies from "vue-cookies";
                 restaurants: []
             }
         },
-        methods: {//Might need to put this in mounted state so it displays when page is clicked
+        methods: {
             logOut() {
                 cookies.remove(`clientToken`)
                 cookies.remove(`client`)
                 router.push(`/`);         
             },
-            getStore(){
+        },
+        mounted () {
                 axios.request({
                     method : "GET",
                     url: "https://foodierest.ml/api/restaurant",
                     headers: {
                         'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
-                    data : {
-                        name: this.name,
-                        address: this.address,
-                        bio: this.bio,
-                        city: this.city,
-                        email: this.email,
-                        phoneNum: this.phoneNum,
-                        restaurantId: this.restaurantId,
-                    }
-                    }).then((response)=>{
-                    console.log(response);
-                    this.restaurants = response.data
-                    console.log("Success");
-                    router.push(`/restPublic`)
-                    }).catch((error)=>{
-                    console.log(error);
-                    alert(`Access Denied`)
-                    router.push(`/loginRestaurant`)
-                    })
-            },
+                data : {
+                    name: this.name,
+                    address: this.address,
+                    bio: this.bio,
+                    city: this.city,
+                    email: this.email,
+                    phoneNum: this.phoneNum,
+                    restaurantId: this.restaurantId,
+                }
+                }).then((response)=>{
+                console.log(response);
+                this.restaurants = response.data
+                console.log("Success");
+                // router.push(`/restPublic`)
+                }).catch((error)=>{
+                console.log(error);
+                alert(`Access Denied`)
+                router.push(`/loginRestaurant`)
+                })
         },
     }
+
 </script>
 
 <style scoped>
-
+.bodyWrap{
+    background-color: bisque;
+}
+.styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
+    }
+.storeImage{
+    width: 15vw;
+}
 </style>

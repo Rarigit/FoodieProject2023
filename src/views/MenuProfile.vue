@@ -1,19 +1,28 @@
 <template>
-    <div>
+    <div class="bodyWrap">
+        <HeaderProject/>
         <v-container>
-            <!-- Not displaying for some reason -->
+            <br>
+            <v-row>
+                <h1 class="mx-auto">Menu Profile (Restaurant Owners Only)</h1>
+            </v-row>
+            <br>
+            <br>
+            <br>
             <h2 v-for= "menu in menus" :key="menu.menuId">
-                {{menu.name}}
-                <br>
-                {{menu.description}}
-                <br>
-                {{menu.price}}
-                <br>
-                <!-- Lesson learned don't over complicate stuff. Just added a damn menuId  -->
-                {{menu.menuId}}
-                <br>
-                {{menu.imageUrl}}
+                <v-row>
+                    <img class="menuImage" :src="menu.imageUrl" alt="">
+                    <br>
+                    <h3 class="mx-auto">{{menu.name}}</h3>
+                    <br>
+                    <h3 class="mx-auto">{{menu.description}}</h3>
+                    <br>
+                    <h3 class="mx-auto">${{menu.price}}</h3>
+                    <br>
+                    <h3 class="mx-auto">{{menu.menuId}}</h3>
+                </v-row>
             </h2>
+            <br>
             <br>
             <RestaurantMenu/>
             <br>
@@ -24,9 +33,19 @@
             <MenuDelete/>
             <br>
             <br>
-            <v-btn @click="logOut">LogOut
+            <v-row>
+                <v-btn class="mx-auto styleButton" @click="logOut">Return to Home
             </v-btn>
+            </v-row>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </v-container>
+        <FooterProject/>
     </div>
 </template>
 
@@ -36,7 +55,10 @@ import axios from "axios";
 import router from '@/router';
 import RestaurantMenu from "@/components/RestaurantMenu.vue";
 import MenuUpdate from "@/components/MenuUpdate.vue";
-import MenuDelete from "@/components/MenuDelete.vue"
+import MenuDelete from "@/components/MenuDelete.vue";
+import HeaderProject from "@/components/HeaderProject.vue";
+import FooterProject from "@/components/FooterProject.vue";
+
 
     export default {
         name: "MenuProfile",
@@ -44,6 +66,8 @@ import MenuDelete from "@/components/MenuDelete.vue"
             RestaurantMenu,
             MenuUpdate,
             MenuDelete,
+            HeaderProject,
+            FooterProject,
         },
         data() {
             return {
@@ -93,5 +117,16 @@ import MenuDelete from "@/components/MenuDelete.vue"
 </script>
 
 <style scoped>
+.bodyWrap{
+    background-color: bisque;
+}
 
+.menuImage{
+        width: 10vw;
+    }
+    .styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
+    }
 </style>

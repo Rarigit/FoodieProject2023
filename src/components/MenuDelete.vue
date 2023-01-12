@@ -9,7 +9,7 @@
             prepend-icon="mdi-bio"
             />
             <br>
-            <v-btn @click="deleteMenu">Delete Menu 
+            <v-btn color="green" large class="styleButton" @click="deleteMenu">Delete Menu 
             </v-btn>
         </v-container>
     </div>
@@ -62,5 +62,9 @@ import cookies from "vue-cookies";
 </script>
 
 <style scoped>
-
+.styleButton{
+    color: black;
+    height: 7vh;
+    box-shadow: 2px 2px 3px;
+}
 </style>

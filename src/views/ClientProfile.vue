@@ -1,26 +1,44 @@
 <template>
-    <div>
+    <div class="bodyWrap">
+    <HeaderProject/>
+    <br>
     <v-container v-if="!loggedIn">
-        <!-- This is technically my ClientProfile page -->
-        <!-- When Im logged in this page will display. If im not it wont display at all. -->
-        <h1>Client Profile</h1>
+        <v-row>
+            <h1 class="mx-auto">Client Profile</h1>
+        </v-row>
+        <br>
+        <br>
+        <br>
         <div v-for="client in clients" :key="client.id">
-            <h2>{{client.email}}</h2>
-            <h2>{{client.firstName}}</h2>
-            <h2>{{client.lastName}}</h2>
-            <h2>{{client.username}}</h2>
+            <v-row>
+                <h2 class="mx-auto">{{client.username}}</h2>
+                <h2 class="mx-auto">{{client.firstName}}</h2>
+                <h2 class="mx-auto">{{client.lastName}}</h2>
+                <h2 class="mx-auto">{{client.email}}</h2>
+            </v-row>
         </div>
         <br>
-        <v-btn @click="logOut">Client Logout</v-btn>
         <br>
-        <br>
-        <br>
-        <router-link to="restPublic">See Restaurants</router-link>
+        <v-row>
+            <v-btn class="mx-auto styleButton" router-link to="restPublic">See Restaurants
+        </v-btn>
+        </v-row>
         <br>
         <ClientUpdate/>
         <br>
+        <v-row>
+            <v-btn class="mx-auto styleButton" @click="logOut">Client Logout</v-btn>
+        </v-row>
+        <br>
         <ClientDelete/>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </v-container>
+    <FooterProject/>
     </div>
 </template>
 
@@ -30,6 +48,8 @@ import axios from "axios";
 import router from '@/router';
 import ClientUpdate from "@/components/ClientUpdate.vue";
 import ClientDelete from "@/components/ClientDelete.vue";
+import HeaderProject from "@/components/HeaderProject.vue";
+import FooterProject from "@/components/FooterProject.vue";
 
 
     export default {
@@ -37,6 +57,8 @@ import ClientDelete from "@/components/ClientDelete.vue";
         components: {
             ClientUpdate,
             ClientDelete,
+            HeaderProject,
+            FooterProject,
             //Only once the client is logged in will they have the option to go to Restaurants page
         },
         data() {
@@ -70,15 +92,21 @@ import ClientDelete from "@/components/ClientDelete.vue";
                 }).catch((error)=>{
                 console.log(error);
                 alert(`Access Denied`)
-                router.push(`/loginClient`)
+                router.push(`/loginClientHome`)
                 });
         },
     }
 </script>
 
 <style scoped>
-button{
-        color: aqua;
-        height: 4vh;
+.bodyWrap{
+        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
     }
 </style>

@@ -1,10 +1,8 @@
 <template>
     <div>
         <v-container>
-            <!-- This is more of a log-out than deletion of restaurant profile. There is no delete for Restaurant in API docs.  -->
-            <!-- I might possible need to remove the logout button i made for restaurants, Leave it for now, confirm with Mark  -->
             <h2>Restaurant Log-Out</h2>
-            <v-btn
+            <v-btn class="mx-auto styleButton"
             @click="deleteStore">Store Logout
             </v-btn>
         </v-container>
@@ -59,5 +57,10 @@ import cookies from "vue-cookies";
 </script>
 
 <style scoped>
+.styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
+    }
 
 </style>

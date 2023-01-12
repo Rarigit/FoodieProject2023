@@ -1,11 +1,17 @@
 <template>
-    <div>
-        <!-- <HomePage/> -->
-        <h1>Client Login</h1>
+    <div class="bodyWrap">
+        <HeaderProject/>
         <br>
-        <router-link to="/">Home</router-link>
+        <!--This is now the new homepage-->
+        <v-row>
+            <h1 class="mx-auto">Sign In To Order</h1>
+        </v-row>
+        <br>
+        <br>
+        <br>
+        <br>
         <v-container>
-            <v-form>
+            <v-form class="d-flex align-center">
                 <v-text-field
                 v-model="email"
                 label="email"
@@ -16,23 +22,59 @@
                 label="password"
                 prepend-icon="mdi-lock"
                 />
-                <v-btn @click="logClient">Client Login
+                <br>
+                <br>
+                <br>
+                <v-btn color="green" large class="ml-5" @click="logClient">Client Login
                 </v-btn>
+                <br>
+                <v-spacer></v-spacer>
+                <br>
+                <v-btn class="ml-5" router-link to="/registerClient">Register as Client
+                </v-btn>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </v-form>
         </v-container>
+        <FooterProject/>
     </div>
 </template>
 
 <script>
-// import HomePage from '../components/HomePage';
 import axios from "axios";
 import cookies from "vue-cookies";
 import router from '@/router';
+import HeaderProject from "@/components/HeaderProject.vue";
+import FooterProject from "@/components/FooterProject.vue";
 
     export default {
-        name: "LoginClient",
+        name: "LoginClientHome",
         components: {
-            // HomePage,
+            HeaderProject,
+            FooterProject,
         },
         data() {
             return {
@@ -72,6 +114,11 @@ import router from '@/router';
 </script>
 
 <style scoped>
+.bodyWrap{
+        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 button{
         color: aqua;
         height: 4vh;

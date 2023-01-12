@@ -38,7 +38,7 @@
                 label="phone"
                 prepend-icon="mdi-phone"
                 />
-                <v-btn @click="updateRestaurant">Save Changes
+                <v-btn class="mx-auto styleButton" @click="updateRestaurant">Save Changes
                 </v-btn>
             </v-form>
         </v-container>
@@ -97,5 +97,10 @@ import cookies from "vue-cookies";
 </script>
 
 <style scoped>
+.styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
+    }
 
 </style>

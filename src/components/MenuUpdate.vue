@@ -18,13 +18,12 @@
                 label="Price"
                 prepend-icon="mdi-bio"
                 />
-                <!-- Just adding this text-field on UI is way easier than passing props or trying to use cookies -->
                 <v-text-field
                 v-model="menuId"
                 label="menuId"
                 prepend-icon="mdi-bio"
                 />
-                <v-btn @click="editMenu">Save changes
+                <v-btn color="green" large class="mx-auto styleButton" @click="editMenu">Save changes
                 </v-btn>
             </v-form>
             <br>
@@ -81,5 +80,12 @@ import cookies from "vue-cookies";
 </script>
 
 <style scoped>
-
+.bodyWrap{
+    background-color: bisque;
+}
+.styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
+    }
 </style>

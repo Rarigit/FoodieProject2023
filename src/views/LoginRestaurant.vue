@@ -1,14 +1,15 @@
 <template>
-    <div>
-        <!-- <RegistrationRestaurant/> -->
-        <h1>Restaurant Login</h1>
+    <div class="bodyWrap">
+        <HeaderProject/>
         <br>
-        <router-link to="/">Home</router-link>
+        <v-row>
+            <h1 class="mx-auto">Restaurant Login</h1>
+        </v-row>
         <br>
         <br>
-        <router-link to="/registerRestaurant">Registration Restaurant</router-link>
+        <br>
         <v-container>
-            <v-form>
+            <v-form class="d-flex align-center">
                 <v-text-field
                 v-model="email"
                 label="email"
@@ -19,10 +20,50 @@
                 label="password"
                 prepend-icon="mdi-lock"
                 />
-                <v-btn @click="logStore">Login Restaurant
+                <br>
+                <v-spacer></v-spacer>
+                <br>
+                <v-btn color="green" large class="styleButton" @click="logStore">Login Restaurant
                 </v-btn>
+                <br>
+                <v-spacer></v-spacer>
+                <br>
+                <v-btn class="styleButton" router-link to="/">Home
+                </v-btn>
+                <br>
+                <v-spacer></v-spacer>
+                <v-btn class="styleButton" router-link to="/registerRestaurant">Registration Restaurant
+                </v-btn>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </v-form>
         </v-container>
+        <FooterProject/>
     </div>
 </template>
 
@@ -30,10 +71,15 @@
 import cookies from "vue-cookies";
 import axios from "axios";
 import router from '@/router';
+import HeaderProject from "@/components/HeaderProject.vue";
+import FooterProject from "@/components/FooterProject.vue";
 
     export default {
-    components: { 
-    }, 
+    name: "LoginRestaurant",
+    components: {
+        HeaderProject,
+        FooterProject
+    },
     data() {
         return {
             apiKey: process.env.VUE_APP_API_KEY,
@@ -78,8 +124,15 @@ import router from '@/router';
 </script>
 
 <style scoped>
-button{
-        color: aqua;
-        height: 4vh;
+.bodyWrap{
+        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .styleButton{
+        color: black;
+        height: 7vh;
+        box-shadow: 2px 2px 3px;
     }
 </style>

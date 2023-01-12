@@ -2,7 +2,7 @@
     <div>
         <v-container>
             <h2>Delete User</h2>
-            <v-btn
+            <v-btn color="green" large class="styleButton"
             @click="deleteClient">Delete User
             </v-btn>
         </v-container>
@@ -43,7 +43,7 @@ import cookies from "vue-cookies";
                     alert('User Deleted!');
                     cookies.remove(`clientToken`)
                     cookies.remove(`client`)
-                    router.push(`/loginClient`)
+                    router.push(`/loginClientHome`)
                     }).catch((error)=>{
                     console.log(error);
                     alert('Failed to delete!');
@@ -54,5 +54,9 @@ import cookies from "vue-cookies";
 </script>
 
 <style scoped>
-
+.styleButton{
+    color: black;
+    height: 7vh;
+    box-shadow: 2px 2px 3px;
+}
 </style>

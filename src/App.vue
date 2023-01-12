@@ -1,16 +1,16 @@
 <template>
   <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
     >
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="Foodie Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="https://imgs.search.brave.com/5Ef-gPTV0QNmUPallKcAGH_Hei2EQtHPlhR1ehPbn6E/rs:fit:1487:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC44/am9sYlhjUzJhQ0Mx/LTlBYkhQZlZnSGFD/WCZwaWQ9QXBp"
           transition="scale-transition"
           width="40"
         />
@@ -20,7 +20,7 @@
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          src="https://imgs.search.brave.com/5Ef-gPTV0QNmUPallKcAGH_Hei2EQtHPlhR1ehPbn6E/rs:fit:1487:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC44/am9sYlhjUzJhQ0Mx/LTlBYkhQZlZnSGFD/WCZwaWQ9QXBp"
           width="100"
         />
       </div>
@@ -37,9 +37,9 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
+    <v-main> -->
       <router-view/>
-    </v-main>
+    <!-- </v-main> -->
   </v-app>
 </template>
 
