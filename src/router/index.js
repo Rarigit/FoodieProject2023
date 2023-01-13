@@ -19,6 +19,10 @@ import MenuPublic from "@/components/MenuPublic.vue"
 import OrderRegister from "@/components/OrderRegister.vue"
 import HeaderProject from "@/components/HeaderProject.vue"
 import FooterProject from "@/components/FooterProject.vue"
+import OrderAlpha from "@/views/OrderAlpha.vue"
+import OrderPatch from "@/components/OrderPatch.vue"
+import RestaurantOrderAlpha from "@/views/RestaurantOrderAlpha.vue"
+import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue"
 
 
 
@@ -100,6 +104,22 @@ const routes = [
   {
     path: "/footer",
     component: FooterProject,
+  },
+  {
+    path: "/orderAlpha",
+    component: OrderAlpha,
+  },
+  {
+    path: "/orderPatch",
+    component: OrderPatch,
+  },
+  {
+    path: "/restOrderAlpha",
+    component: RestaurantOrderAlpha,
+  },
+  {
+    path: "/restOrderPatch",
+    component: RestaurantOrderPatch,
   },
 ]
 

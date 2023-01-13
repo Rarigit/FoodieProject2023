@@ -82,13 +82,12 @@ import FooterProject from "@/components/FooterProject.vue";
                 url: "https://foodierest.ml/api/client",
                 headers: {
                     'x-api-key' : process.env.VUE_APP_API_KEY,
-                    'token': cookies.get('clientToken'),//Genius code right here. This sets it to the unique token of each client. After which it displays the user profile of that client. 
-                },                                      // That way both axios calls will succeed. 
+                    'token': cookies.get('clientToken'),//This sets it to the unique token of each client. After which it displays the user profile of that client. 
+                },                                      
                 }).then((response)=>{
                 console.log(response);
                 this.clients = response.data;
                 console.log("Success");
-                // router.push(`/restPublic`)Redundant Operation as by doing this im just pushing it to the page its already on
                 }).catch((error)=>{
                 console.log(error);
                 alert(`Access Denied`)
@@ -100,7 +99,7 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
+        background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
         background-repeat: no-repeat;
         background-size: cover;
     }

@@ -103,7 +103,6 @@ import FooterProject from "@/components/FooterProject.vue";
                     console.log(response);
                     console.log("Store Logged In");
                     let store  = response.data.restaurantId;//Finally got it. It has to match letter for letter with the data names in the console response
-                    // this.$root.$emit(`displayLogin`, store)
                     cookies.set(`restaurantID`, store)
                     let storeToken = response.data.token;
                     cookies.set(`restaurantToken`, storeToken);

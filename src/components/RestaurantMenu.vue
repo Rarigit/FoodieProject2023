@@ -1,7 +1,6 @@
 <template>
     <div>
         <v-container>
-            <!-- Need to find a way to get the page to reload once a function runs or an a axios call is made. Maybe mounted?? -->
             <h2>Make a Menu</h2>
             <v-form>
                 <v-text-field
@@ -28,7 +27,6 @@
 
 <script>
 import axios from "axios";
-// import router from "@/router";
 import cookies from "vue-cookies";
 
     export default {
@@ -44,10 +42,9 @@ import cookies from "vue-cookies";
                 name: "",
                 description: "",
                 price: [],
-                // menuId: [],
             }
         },
-        methods: {//Need to make a lot more menus. Also need a menu delete and menu update component (AS A RESTAURANT) 
+        methods: {
             createMenu() {
                 axios.request({
                     method : "POST",
@@ -64,12 +61,8 @@ import cookies from "vue-cookies";
                     },
                     }).then((response)=>{
                     console.log(response);
-                    // let menuToken  = response.data.menuId;
-                    // cookies.set('menuID', response.data.menuId);
-                    // console.log(menuToken);
                     console.log("Menu item created");
                     alert('Menu item created!')
-                    // router.push(`/restMenu`).....Don't push to page as the form just shows up.
                     }).catch((error)=>{
                     console.log(error);
                     alert('Failed to update Menu!')
@@ -77,10 +70,7 @@ import cookies from "vue-cookies";
             },
         },
         mounted () {
-            // this.$root.$emit('menuId')//Not defined on the console--------------
             this.$root.$emit('restaurantID')
-            // console.log(menuId); //not defined on the console--------------------
-            // console.log(cookies.get('restaurantID'));
         },
     }
 </script>

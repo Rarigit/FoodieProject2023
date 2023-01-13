@@ -35,7 +35,7 @@
 import axios from "axios";
 import router from "@/router";
 import cookies from "vue-cookies";
-// import MenuProfile from "@/views/MenuProfile.vue"; ---nope doesn't work cant import a view into a component
+
     export default {
         name: "MenuUpdate",
         data() {
@@ -49,7 +49,6 @@ import cookies from "vue-cookies";
         },
         methods: {
             editMenu() {
-                // console.log(menuId);
                 axios.request({
                     method : "PATCH",
                     url: "https://foodierest.ml/api/menu",
@@ -67,8 +66,6 @@ import cookies from "vue-cookies";
                     console.log(response);
                     console.log("Successful update");
                     alert('User info. updated!!')
-                    // cookies.remove(`restaurantToken`)---------> Unnecessary redirect imo. Need to learn how to update or reload page upon completed axios call.
-                    // cookies.remove(`restaurantID`)
                     router.push(`/loginRestaurant`)
                     }).catch((error)=>{
                     console.log(error);

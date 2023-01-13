@@ -102,8 +102,8 @@ import HeaderProject from "@/components/HeaderProject.vue";
                     }
                     }).then((response)=>{
                     console.log(response);
-                    console.log("Success");// No need to set cookies in registration as i set them in login instead 
-                    router.push(`/loginClientHome`)
+                    console.log("Success");
+                    router.push(`/`)
                     }).catch((error)=>{
                     console.log(error);
                     })

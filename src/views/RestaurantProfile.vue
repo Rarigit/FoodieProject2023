@@ -86,11 +86,11 @@ import FooterProject from "@/components/FooterProject.vue";
             logOut() {
                 cookies.remove(`restaurantToken`)
                 cookies.remove(`restaurantID`)
-                router.push(`/`);//Great success. Removed session tokens and router pushed all in one function. No need for confusing emits!
+                router.push(`/`);
                 this.loggedIn = false
             }
         },
-        mounted () {//It displays on the page once in mounted state also you don't need a function just a straight axios request will suffice or else it doesn't work
+        mounted () {
                 axios.request({
                     method : "GET",
                     url: "https://foodierest.ml/api/restaurant",
@@ -104,9 +104,6 @@ import FooterProject from "@/components/FooterProject.vue";
                     console.log(response);
                     this.restaurants = response.data;
                     console.log("Success");
-                    // let restaurantID = cookies.get('restaurantID')
-                    // console.log(restaurantID)
-                    // router.push(`/accessRest`)Redundant Operation as by doing this im just pushing it to the page its already on
                     }).catch((error)=>{
                     console.log(error);
                     alert(`Access Denied`)
@@ -122,8 +119,11 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-    background-color: bisque;
+    background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 .styleButton{
         color: black;
         height: 7vh;

@@ -7,6 +7,8 @@
                 <h1 class="mx-auto">Menu Profile (Restaurant Owners Only)</h1>
             </v-row>
             <br>
+            <v-btn router-link to="/restOrderAlpha" class="mx-auto styleButton" large color="red">Go to Orders</v-btn>
+            <br>
             <br>
             <br>
             <h2 v-for= "menu in menus" :key="menu.menuId">
@@ -19,7 +21,7 @@
                     <br>
                     <h3 class="mx-auto">${{menu.price}}</h3>
                     <br>
-                    <h3 class="mx-auto">{{menu.menuId}}</h3>
+                    <h3 class="mx-auto">MenuId: {{menu.menuId}}</h3>
                 </v-row>
             </h2>
             <br>
@@ -34,7 +36,7 @@
             <br>
             <br>
             <v-row>
-                <v-btn class="mx-auto styleButton" @click="logOut">Return to Home
+                <v-btn class="mx-auto styleButton" color="grey" large @click="logOut">Return to Home
             </v-btn>
             </v-row>
             <br>
@@ -74,7 +76,6 @@ import FooterProject from "@/components/FooterProject.vue";
                 apiKey: process.env.VUE_APP_API_KEY,
                 menus: [],
                 restaurantID: cookies.get('restaurantID'),
-                // menuID: cookies.get('menuID', this.newMenu)Just trying shit at this point because its not reading the value of the cookie for some reason
                 menuId: Number,
             }
         },
@@ -82,22 +83,20 @@ import FooterProject from "@/components/FooterProject.vue";
             logOut() {
                 cookies.remove(`restaurantToken`);
                 cookies.remove(`restaurantID`);
-                // cookies.remove('menuID');
-                router.push(`/`);//Great success. Removed session tokens and router pushed all in one function. No need for confusing emits!
+                router.push(`/`);
             },
         },
         mounted () {
-            console.log(process.env.VUE_APP_API_KEY)//Test to see if it was registering the local env file. Make sure to store env.local in the correct place
-            // console.log(menuID); //NEED TO GET THIS TO DISPLAY ON THE CONSOLE. NOT DOING COOKIES ANYMORE
+            console.log(process.env.VUE_APP_API_KEY)
             axios.request({
                     method : "GET",
                     url: "https://foodierest.ml/api/menu",
                     headers: {
                         'x-api-key' :  process.env.VUE_APP_API_KEY,
                     },
-                    params : {//Eureka!!! it was params all along. LFG!!
+                    params : {
                         'restaurantId': this.restaurantID,
-                        'menuId': this.menuID,//It only works with the capital ID after menu for some reason. Makes zero sense--------------
+                        'menuId': this.menuID,
                     }
                     }).then((response)=>{
                     console.log(response);
@@ -108,17 +107,17 @@ import FooterProject from "@/components/FooterProject.vue";
                     alert(`Access Denied`)
                     router.push(`/loginRestaurant`)
                     })
-            this.$root.$on('restaurantID');//This is displaying
+            this.$root.$on('restaurantID');
             this.$root.$on('menuID');
-            // console.log(cookies.get('restaurantID'));
-            // console.log(cookies.get('menuID')); 
         },
     }
 </script>
 
 <style scoped>
 .bodyWrap{
-    background-color: bisque;
+    background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .menuImage{

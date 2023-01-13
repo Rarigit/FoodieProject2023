@@ -36,7 +36,6 @@
                         <v-row>
                             <v-btn class="mx-auto" color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn>
                         </v-row>
-                        <!-- <v-btn color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn> -->
                         <br>
                     </h3>
             </h2>
@@ -112,7 +111,6 @@ import FooterProject from "@/components/FooterProject.vue";
                 console.log(response);
                 this.restaurants = response.data
                 console.log("Success");
-                // router.push(`/restPublic`)
                 }).catch((error)=>{
                 console.log(error);
                 alert(`Access Denied`)
@@ -125,7 +123,9 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-    background-color: bisque;
+    background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .styleButton{
         color: black;

@@ -43,7 +43,7 @@
                 <br>
                 <br>
                 <br>
-                <v-btn class="mx-auto styleButton" large  @click="logOut"> LogOut
+                <v-btn class="mx-auto styleButton" large color="grey" @click="logOut"> LogOut
                 </v-btn>
             </v-row>
             <br>
@@ -54,7 +54,9 @@
             <br>
             <br>
             <br>
-            <br>
+            <v-row>
+                <v-btn router-link to="/orderAlpha" class="mx-auto styleButton" color="blue" large>Get Order Info.</v-btn>
+            </v-row>
             <br>
             <br>
             <br>
@@ -125,7 +127,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove('selectStore');
                 cookies.remove('newCart');
                 cookies.remove('nameCart');
-                router.push(`/`)//Homepage for now will edit later such as back to Orders or client login
+                router.push(`/`)
             },
         mounted () {
         }
@@ -135,7 +137,9 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-    background-color: bisque;
+    background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .styleButton{
         color: black;

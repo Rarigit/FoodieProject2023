@@ -24,10 +24,6 @@ import cookies from "vue-cookies";
         data() {
             return {
                 apiKey: process.env.VUE_APP_API_KEY,
-                // name: "",
-                // description: "",-------------------> The delete request actually worked once i commented out the other return variables 
-                // price: [],                           // Pretty cool, same concept as client delete just needed the process.env.api.key
-                // menuId: [],
             }
         },
         methods: {
@@ -49,9 +45,6 @@ import cookies from "vue-cookies";
                     console.log(response);
                     console.log("Successful update");
                     alert('Menu item deleted!!')
-                    // cookies.remove(`restaurantToken`)
-                    // cookies.remove(`restaurantID`)---------------->//Unnecessary router push imo
-                    // router.push(`/loginRestaurant`)
                     }).catch((error)=>{
                     console.log(error);
                     alert('Failed Delete');

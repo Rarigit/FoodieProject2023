@@ -21,12 +21,18 @@
                     <br>
                 MenuId: {{menu.menuId}}
                     <br>
-                    <v-btn v-on:click="addMenu(menu.menuId)">Select
-                    </v-btn>
-                    <v-btn @click="addName(menu.name)">Confirm
-                    </v-btn>
-                    <v-btn @click="removeMenu(menu.menuId)">Remove from cart
-                    </v-btn>
+                    <br>
+                    <v-row>
+                        <v-btn class="mx-auto" @click="addMenu(menu.menuId)">Select MenuId 
+                        </v-btn>
+                        <br>
+                        <v-btn class="mx-auto" @click="addName(menu.name)">Select Menu Name
+                        </v-btn>
+                        <v-btn class="mx-auto" @click="removeMenu(menu.menuId)">Remove MenuId from cart
+                        </v-btn>
+                        <v-btn class="mx-auto" @click="removeName(menu.name)">Remove Menu Name from cart
+                        </v-btn>
+                    </v-row>
                     <br>
                     <br>
                 </h2>
@@ -60,7 +66,6 @@ import FooterProject from "@/components/FooterProject.vue";
                 apiKey: process.env.VUE_APP_API_KEY,
                 menus: [],
                 restaurantID: cookies.get('restaurantID'),
-                // menuId: Number,//-----------Does this even work?????
                 client: cookies.get('client'),
                 cart: [],
                 nameCart: [],
@@ -83,6 +88,9 @@ import FooterProject from "@/components/FooterProject.vue";
             },
             removeMenu(menuId) {
                 this.cart.splice(this.cart.indexOf(menuId));
+            },
+            removeName(name) {
+                this.nameCart.splice(this.nameCart.indexOf(name));
             },
             logOut() {
                 cookies.remove(`clientToken`)
@@ -118,7 +126,9 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-    background-color: bisque;
+    background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header {
