@@ -54,7 +54,8 @@ import cookies from "vue-cookies";
         name: "RestaurantUpdate",
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 name: "",
                 address: "",
                 bio: "",
@@ -68,10 +69,10 @@ import cookies from "vue-cookies";
             updateRestaurant() {
                 axios.request({
                     method : "PATCH",
-                    url: "https://foodierest.ml/api/restaurant",
+                    url: this.url + "/restaurant",
                     headers: {
                         'token' : cookies.get('restaurantToken'),
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
                     data : {
                         name: this.name,

@@ -8,15 +8,11 @@
             </v-row>
             <br>
             <br>
+            <br>
             <h2 v-for="trolley in trolleys" :key="trolley">
             <v-row>
                 <h3 class="mx-auto">{{trolley}}</h3>
-            </v-row>
-            </h2>
-            <br>
-            <h2 v-for="item in items" :key=item>
-            <v-row>
-                <h3 class="mx-auto">Selected Menu Items: {{item}}</h3> 
+            <!-- This is the second data-point in my trolleys array, in particular the string containing the name, which makes more sense for the users to see   -->
             </v-row>
             </h2>
             <br>
@@ -46,10 +42,6 @@
                 <v-btn class="mx-auto styleButton" large color="grey" @click="logOut"> LogOut
                 </v-btn>
             </v-row>
-            <br>
-            <br>
-            <br>
-            <br>
             <br>
             <br>
             <br>
@@ -84,9 +76,10 @@ import FooterProject from "@/components/FooterProject.vue";
         },
         data() {
             return {
+                url: process.env.VUE_APP_API_URL,
                 restaurantId: cookies.get('selectStore'),///Only one restaurantId per menu data so this was easy to set.
-                apiKey: process.env.VUE_APP_API_KEY,
-                items: [cookies.get('newCart')],///Setting the items array needed in the api call to the array of strings gleaned from my cart cookie
+                // apiKey: process.env.VUE_APP_API_KEY,
+                items: [cookies.get('menuCart')],///Setting the items array needed in the api call to the array of strings gleaned from my cart cookie
                 trolleys: [cookies.get('nameCart')],
             }   
         },
@@ -94,10 +87,10 @@ import FooterProject from "@/components/FooterProject.vue";
             setOrder() {
                 axios.request({
                     method : "POST",
-                    url: "https://foodierest.ml/api/order",
+                    url: this.url + "/order",
                     headers: {
                         'token' : cookies.get('clientToken'),
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
                     data : {
                         restaurantId: this.restaurantId,
@@ -107,7 +100,9 @@ import FooterProject from "@/components/FooterProject.vue";
                     console.log(response);
                     console.log("Order created");
                     alert('Order completed!')
-                    // router.push(`/restMenu`).....Don't push to page as the form just shows up.
+                    cookies.remove('nameCart');
+                    cookies.remove('menuCart');
+                    // cookies.remove('') --> or else the order will keep populating and not leave. Good code
                     }).catch((error)=>{
                     console.log(error);
                     alert('Order Failed')
@@ -115,7 +110,7 @@ import FooterProject from "@/components/FooterProject.vue";
             },
             backStore() {
                 cookies.remove('selectStore');
-                cookies.remove('newCart');
+                cookies.remove('menuCart');
                 cookies.remove('clientToken');
                 cookies.remove('client');
                 cookies.remove('nameCart')
@@ -125,13 +120,17 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove('clientToken');
                 cookies.remove('client');
                 cookies.remove('selectStore');
-                cookies.remove('newCart');
+                cookies.remove('menuCart');
                 cookies.remove('nameCart');
                 router.push(`/`)
             },
+        },
         mounted () {
-        }
-        }
+            window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
+                document.cookie = "nameCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "menuCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                };
+        },
     }   
 </script>
 

@@ -5,11 +5,13 @@
             <h1>Select a Restaurant</h1>
             <br>
             <h2>Select via Store ID</h2>
+            <br>
             <h2 v-for="restaurant,index in restaurants" :key="index">
                     <h3 v-if="restaurant">
                         <v-row no-gutters>
                             <v-col class="d-flex">
                                 <br>
+                                <!-- I only need image, address and city. Make it look like a card like Skip does it. Too much unnecessary info-->
                                 <img class="storeImage" :src="restaurant.bannerUrl" alt="Picture">
                                 <v-spacer></v-spacer>
                                 <v-spacer></v-spacer>
@@ -19,22 +21,18 @@
                                 {{restaurant.address}}
                                 <v-spacer></v-spacer>
                                 <v-spacer></v-spacer>
-                                {{restaurant.bio}}
+                                <!-- {{restaurant.bio}} -->
                                 <v-spacer></v-spacer>
                                 <v-spacer></v-spacer>
                                 {{restaurant.city}}
                                 <v-spacer></v-spacer>
                                 <v-spacer></v-spacer>
-                                {{restaurant.email}}
+                                <!-- {{restaurant.email}} -->
                                 <v-spacer></v-spacer>
                                 <v-spacer></v-spacer>
-                                {{restaurant.phoneNum}}
+                                <!-- {{restaurant.phoneNum}} -->
+                                <v-btn class="mx-auto" color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn>
                             </v-col>
-                        </v-row>
-                        <v-spacer></v-spacer>
-                        <v-spacer></v-spacer>
-                        <v-row>
-                            <v-btn class="mx-auto" color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn>
                         </v-row>
                         <br>
                     </h3>
@@ -73,7 +71,8 @@ import FooterProject from "@/components/FooterProject.vue";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 name: "",
                 address: "",
                 bio: "",
@@ -94,10 +93,10 @@ import FooterProject from "@/components/FooterProject.vue";
         mounted () {
                 axios.request({
                     method : "GET",
-                    url: "https://foodierest.ml/api/restaurant",
-                    headers: {
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
-                    },
+                    url: this.url + "/restaurant",
+                    // headers: {
+                    //     'x-api-key' : process.env.VUE_APP_API_KEY,
+                    // },
                 data : {
                     name: this.name,
                     address: this.address,
@@ -116,6 +115,10 @@ import FooterProject from "@/components/FooterProject.vue";
                 alert(`Access Denied`)
                 router.push(`/loginRestaurant`)
                 })
+
+                window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
+                document.cookie = "selectStore=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                };
         },
     }
 
@@ -135,4 +138,5 @@ import FooterProject from "@/components/FooterProject.vue";
 .storeImage{
     width: 15vw;
 }
+
 </style>

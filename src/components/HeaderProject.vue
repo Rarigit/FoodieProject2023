@@ -5,7 +5,7 @@
                 <v-row align-content="center" class="lightbox white--text pa-0 fill-height">
                     <v-col>
                         <v-container>
-                            <h1 class="subHeader">Foodie Eats</h1>
+                            <h1 class="subHeader">Foodze</h1>
                         </v-container>
                     </v-col>
                 </v-row>

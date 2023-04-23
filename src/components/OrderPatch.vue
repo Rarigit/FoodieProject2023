@@ -41,7 +41,8 @@ import cookies from "vue-cookies";
         name: "OrderPatch",
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 clientToken: cookies.get('clientToken'),
                 orderId: cookies.get('orderId'),
                 cancelOrder: "",
@@ -51,14 +52,14 @@ import cookies from "vue-cookies";
             editClient() {
                 axios.request({
                     method : "PATCH",
-                    url: "https://foodierest.ml/api/order",
+                    url: this.url + "/order-client",
                     headers: {
                         'token' : cookies.get('clientToken'),
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
                     data : {
                         orderId: this.orderId,
-                        cancelOrder: this.cancelOrder,
+                        cancelOrder: this.cancelOrder,//Mark set this to true
                     }
                     }).then((response)=>{
                     console.log(response);

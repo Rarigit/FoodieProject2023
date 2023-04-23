@@ -38,7 +38,8 @@ import cookies from "vue-cookies";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 name: "",
                 description: "",
                 price: [],
@@ -48,9 +49,9 @@ import cookies from "vue-cookies";
             createMenu() {
                 axios.request({
                     method : "POST",
-                    url: "https://foodierest.ml/api/menu",
+                    url: this.url + "/menu",
                     headers: {
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        // 'x-api-key' : process.env.VUE_APP_API_KEY,
                         'token' : cookies.get('restaurantToken'),
                     },
                     data : {

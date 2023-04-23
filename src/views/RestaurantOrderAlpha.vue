@@ -6,34 +6,37 @@
             <br>
             <br>
             <div v-for="order in orders" :key="order.orderId">
-                <v-row>
+                <v-container
+                    v-for="align in alignments"
+                    :key="align"
+                    class="grey lighten-7 mb-6"
+                    >
+                    <v-row
+                    :align="align"
+                    no-gutters
+                    style="height: 250px;"
+                    >
+                    <v-col
+                    v-for="n in 5"
+                    :key="n"
+                    >
+                    <v-card
+                    class="pa-2"
+                    outlined
+                    tile
+                    >
                     <h2 class="mx-auto">Client Id: {{order.clientId}}</h2>
-                </v-row>
-                <br>
-                <v-row>
                     <h2 class="mx-auto">Order Time: {{order.createdAt}}</h2>
-                </v-row>
-                <br>
-                <v-row>
                     <h2 class="mx-auto">Order Cancel: {{order.isCancelled}}</h2>
-                </v-row>
-                <br>
-                <v-row>
-                    <h2 class="mx-auto">Order Complete: {{order.isComplete}}</h2>
-                </v-row>
-                <br>
-                <v-row>
+                    <!-- <h2 class="mx-auto">Order Complete: {{order.isComplete}}</h2> -->
                     <h2 class="mx-auto">Order Confirm: {{order.isConfirmed}}</h2>
-                </v-row>
-                <v-row>
                     <h2 class="mx-auto">Order Id: {{order.orderId}}</h2>
-                </v-row>
-                <br>
-                <v-row>
-                    <h2 class="mx-auto">Store Id: {{order.restaurantId}}</h2>
-                </v-row>
-                <br>
-                <br>
+                    <!-- <h2 class="mx-auto">Store Id: {{order.restaurantId}}</h2> -->
+                    <br>
+                    </v-card>
+                    </v-col>
+                    </v-row>
+                </v-container>
             </div>
         <br>
         <br>
@@ -76,9 +79,15 @@ import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 restaurantToken: cookies.get('restaurantToken'),
                 orders: [],
+                alignments: [
+                    'start',
+                    'center',
+                    'end',
+                ],
             }
         },
         methods: {
@@ -91,9 +100,9 @@ import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue";
         mounted () {
             axios.request({
                 method : "GET",
-                url: "https://foodierest.ml/api/order",
+                url: this.url + "/order-restaurant",
                 headers: {
-                    'x-api-key' : process.env.VUE_APP_API_KEY,
+                    // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     'token': cookies.get('restaurantToken'),
                 },                                      
                 }).then((response)=>{

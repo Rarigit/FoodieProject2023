@@ -18,16 +18,16 @@ import cookies from "vue-cookies";
         name: "RestaurantDelete",
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
             }
         },
         methods: {
             deleteStore() {
                 axios.request({
                     method : "DELETE",
-                    url: "https://foodierest.ml/api/restaurant-login",
+                    url: this.url + "/restaurant",
                     headers: {
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        // 'x-api-key' : process.env.VUE_APP_API_KEY,
                         'token' : cookies.get('restaurantToken'),
                     },
                     data : {//Just needed this data in the axios request as it needs to be deleted. No need to have this returned above in data or in the html.

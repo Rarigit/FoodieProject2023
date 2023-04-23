@@ -63,7 +63,7 @@ import FooterProject from "@/components/FooterProject.vue";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 clients: [],
                 loggedIn: false
             }
@@ -79,9 +79,9 @@ import FooterProject from "@/components/FooterProject.vue";
         mounted () {
             axios.request({
                 method : "GET",
-                url: "https://foodierest.ml/api/client",
+                url: this.url + "/client",
                 headers: {
-                    'x-api-key' : process.env.VUE_APP_API_KEY,
+                    // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     'token': cookies.get('clientToken'),//This sets it to the unique token of each client. After which it displays the user profile of that client. 
                 },                                      
                 }).then((response)=>{

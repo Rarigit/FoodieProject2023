@@ -7,18 +7,30 @@
         </v-row>
         <br>
         <br>
+        <div>
+            <v-alert v-model="error" type="error" :value="true">Warning: Incorrect Email and/or Password</v-alert>
+        </div>
         <br>
         <v-container>
             <v-form class="d-flex align-center">
                 <v-text-field
-                v-model="email"
-                label="email"
+                v-model="formData.email"
+                :rules="emailRules"
+                label="E-mail"
                 prepend-icon="mdi-email"
+                required
                 />
+                <v-spacer></v-spacer>
                 <v-text-field
-                v-model="password"
-                label="password"
-                prepend-icon="mdi-lock"
+                v-model="formData.password"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[rules.required, rules.min]"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="Enter Password"
+                hint="At least 8 characters"
+                counter
+                @click:append="show1 = !show1"
                 />
                 <br>
                 <v-spacer></v-spacer>
@@ -82,22 +94,36 @@ import FooterProject from "@/components/FooterProject.vue";
     },
     data() {
         return {
-            apiKey: process.env.VUE_APP_API_KEY,
-            email: "",
-            password: ""
+            // apiKey: process.env.VUE_APP_API_KEY,
+            url: process.env.VUE_APP_API_URL,
+            show1: false,
+            formData: {
+                    email: "",
+                    password: "",
+                },
+                rules: {
+                    required: value => !!value || 'Required.',
+                    min: v => v.length >= 8 || 'Min 8 characters',
+                    emailMatch: () => (`The email and password you entered don't match`),
+                },
+                emailRules: [
+                    v => !!v || 'E-mail is required',
+                    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                ],
+                error: false
         }
     },
     methods: {
             logStore() {
                 axios.request({
                     method : "POST",
-                    url: "https://foodierest.ml/api/restaurant-login",
-                    headers: {
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
-                    },
+                    url: this.url + "/restaurant-login",
+                    // headers: {
+                    //     'x-api-key' : process.env.VUE_APP_API_KEY,
+                    // },
                     data : {
-                        email: this.email,
-                        password: this.password
+                        email: this.formData.email,
+                        password: this.formData.password
                     }
                     }).then((response)=>{
                     console.log(response);
@@ -109,15 +135,17 @@ import FooterProject from "@/components/FooterProject.vue";
                     router.push(`/restProfile`)
                     }).catch((error)=>{
                     console.log(error);
-                    alert(`Login Failed`)
+                    this.error= true
                     })
             }
         },
         mounted () {
-            this.$root.$emit('restaurantToken',this.storeToken)
-            this.$root.$emit('restaurantID', this.storeToken)
-            console.log(cookies.get('restaurantToken'));
-            console.log(cookies.get('restaurantID'));
+            // window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
+            // document.cookie = "restaurantToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/loginRestaurant;";
+            // document.cookie = "restaurantID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/loginRestaurant;";
+            // };
+            // this.$root.$emit('restaurantToken',this.storeToken)
+            // this.$root.$emit('restaurantID', this.storeToken)
         },
     }
 </script>

@@ -7,28 +7,41 @@
             <h2>Clients Only</h2>
             <br>
             <div v-for="order in orders" :key="order.orderId">
-                <v-row>
+                <v-container
+                    v-for="align in alignments"
+                    :key="align"
+                    class="grey lighten-7 mb-6"
+                    >
+                    <v-row
+                    :align="align"
+                    no-gutters
+                    style="height: 150px;"
+                    >
+                    <v-col
+                    v-for="n in 3"
+                    :key="n"
+                    >
+                    <v-card
+                    class="pa-2"
+                    outlined
+                    tile
+                    >
                     <h2 class="mx-auto">Client Id: {{order.clientId}}</h2>
-                </v-row>
-                <br>
-                <v-row>
                     <h2 class="mx-auto">Order Time: {{order.createdAt}}</h2>
-                </v-row>
-                <br>
-                <v-row>
                     <h2 class="mx-auto">Order Cancel: {{order.isCancelled}}</h2>
-                </v-row>
-                <br>
-                <v-row>
                     <h2 class="mx-auto">Order Id: {{order.orderId}}</h2>
-                </v-row>
-                <br>
-                <v-row>
                     <h2 class="mx-auto">Store Id: {{order.restaurantId}}</h2>
-                </v-row>
-                <br>
-                <br>
+                    <br>
+                    </v-card>
+                    </v-col>
+                    </v-row>
+                </v-container>
             </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <br>
         <br>
@@ -69,9 +82,15 @@ import OrderPatch from "@/components/OrderPatch.vue";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 clientToken: cookies.get('clientToken'),
                 orders: [],
+                alignments: [
+                    'start',
+                    'center',
+                    'end',
+                ],
             }
         },
         methods: {
@@ -87,9 +106,9 @@ import OrderPatch from "@/components/OrderPatch.vue";
         mounted () {
             axios.request({
                 method : "GET",
-                url: "https://foodierest.ml/api/order",
+                url: this.url + "/order-client",
                 headers: {
-                    'x-api-key' : process.env.VUE_APP_API_KEY,
+                    // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     'token': cookies.get('clientToken'),
                 },                                      
                 }).then((response)=>{
@@ -116,7 +135,7 @@ import OrderPatch from "@/components/OrderPatch.vue";
     background-repeat: no-repeat;
     background-size: cover;
 }
- .styleButton{
+.styleButton{
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;

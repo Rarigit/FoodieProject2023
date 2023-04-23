@@ -23,16 +23,17 @@ import cookies from "vue-cookies";
         name: "MenuDelete",
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
             }
         },
         methods: {
             deleteMenu() {
                 axios.request({
                     method : "DELETE",
-                    url: "https://foodierest.ml/api/menu",
+                    url: this.url + "/menu",
                     headers: {
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
+                        // 'x-api-key' : process.env.VUE_APP_API_KEY,
                         'token' : cookies.get('restaurantToken'),
                     },
                     data : {

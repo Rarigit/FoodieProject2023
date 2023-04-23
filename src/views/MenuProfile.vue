@@ -7,7 +7,7 @@
                 <h1 class="mx-auto">Menu Profile (Restaurant Owners Only)</h1>
             </v-row>
             <br>
-            <v-btn router-link to="/restOrderAlpha" class="mx-auto styleButton" large color="red">Go to Orders</v-btn>
+            <v-btn router-link to="/restOrderAlpha" class="mx-auto styleButton" large color="red">Go To Client Orders</v-btn>
             <br>
             <br>
             <br>
@@ -73,7 +73,8 @@ import FooterProject from "@/components/FooterProject.vue";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 menus: [],
                 restaurantID: cookies.get('restaurantID'),
                 menuId: Number,
@@ -87,13 +88,13 @@ import FooterProject from "@/components/FooterProject.vue";
             },
         },
         mounted () {
-            console.log(process.env.VUE_APP_API_KEY)
+            // console.log(process.env.VUE_APP_API_KEY)
             axios.request({
                     method : "GET",
-                    url: "https://foodierest.ml/api/menu",
-                    headers: {
-                        'x-api-key' :  process.env.VUE_APP_API_KEY,
-                    },
+                    url: this.url + "/menu",
+                    // headers: {
+                    //     'x-api-key' :  process.env.VUE_APP_API_KEY,
+                    // },
                     params : {
                         'restaurantId': this.restaurantID,
                         'menuId': this.menuID,

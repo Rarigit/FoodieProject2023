@@ -1,10 +1,14 @@
 <template>
     <div class="bodyWrap">
     <HeaderProject/>
-    <v-container v-if="!loggedIn">
+    <v-container>
         <v-row>
             <h1 class="mx-auto">Restaurants Profile</h1>
         </v-row>
+        <br>
+        <div>
+            <v-alert v-model="error" type="error" :value="true"></v-alert>
+        </div>
         <br>
         <br>
             <h2 v-for="restaurant,restaurantId in restaurants" :key="restaurantId">
@@ -75,11 +79,12 @@ import FooterProject from "@/components/FooterProject.vue";
         },
         data() {
             return {
-                apiKey: process.env.VUE_APP_API_KEY,
+                // apiKey: process.env.VUE_APP_API_KEY,
+                url: process.env.VUE_APP_API_URL,
                 restaurants: [],
-                loggedIn: false,
                 restaurantID: cookies.get('restaurantID'),
-                restaurantToken: cookies.get('restaurantToken')
+                restaurantToken: cookies.get('restaurantToken'),
+                error: false
             }
         },
         methods: {
@@ -87,16 +92,15 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove(`restaurantToken`)
                 cookies.remove(`restaurantID`)
                 router.push(`/`);
-                this.loggedIn = false
             }
         },
         mounted () {
                 axios.request({
                     method : "GET",
-                    url: "https://foodierest.ml/api/restaurant",
-                    headers: {
-                        'x-api-key' : process.env.VUE_APP_API_KEY,
-                    },
+                    url: this.url + "/restaurant",
+                    // headers: {
+                    //     'x-api-key' : process.env.VUE_APP_API_KEY,
+                    // },
                     params : {//Eureka!!! it was params all along. LFG!!
                         'restaurantId': this.restaurantID,
                     }
@@ -106,14 +110,17 @@ import FooterProject from "@/components/FooterProject.vue";
                     console.log("Success");
                     }).catch((error)=>{
                     console.log(error);
-                    alert(`Access Denied`)
+                    // alert(`Access Denied`)
+                    this.error= true;
                     router.push(`/loginRestaurant`)
-                    }),
-            this.$root.$on('restaurantID')
-            this.$root.$on('restaurantToken');
-            console.log(cookies.get('restaurantID'));
-            console.log(cookies.get('restaurantToken'));  
-        },
+                    })//I think its an integral part of the API which is why it might not work great.
+                    // window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
+                    // document.cookie = "restaurantToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/loginRestaurant;";
+                    // document.cookie = "restaurantID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/loginRestaurant;";
+                    // }
+                // this.$root.$on('restaurantID')
+                // this.$root.$on('restaurantToken');
+        }
     }
 </script>
 
