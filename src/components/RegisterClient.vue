@@ -32,8 +32,8 @@
                             required
                             />
                             <v-text-field
-                            v-model="formData.username"
-                            :rules="[() => !!formData.username || 'This field is required']"
+                            v-model="formData.userName"
+                            :rules="[() => !!formData.userName || 'This field is required']"
                             label="username"
                             placeholder="JohnDoe7"
                             prepend-icon="mdi-account"
@@ -104,7 +104,7 @@ import HeaderProject from "@/components/HeaderProject.vue";
                 // apiKey: process.env.VUE_APP_API_KEY,
                 formData: {
                     email: "",
-                    username: "",
+                    userName: "",
                     firstName: "",
                     lastName: "",
                     password: "",
@@ -134,7 +134,7 @@ import HeaderProject from "@/components/HeaderProject.vue";
                     // },
                     data : {
                         email: this.formData.email,
-                        username: this.formData.username,
+                        userName: this.formData.userName,
                         firstName: this.formData.firstName,
                         lastName: this.formData.lastName,
                         password: this.formData.password

@@ -3,11 +3,11 @@
         <v-container>
             <h2>Edit Personal Info.</h2>
                 <v-form>
-                    <v-text-field
+                    <!-- <v-text-field
                     v-model="email"
                     label="email (NO CHANGE PERMITTED HERE. KEEP EMAIL SAME!!)"
                     prepend-icon="mdi-email"
-                    />
+                    /> -->
                     <v-text-field
                     v-model="username"
                     label="Username"
@@ -38,7 +38,7 @@
 
 <script>
 import axios from "axios";
-import router from "@/router";
+// import router from "@/router";
 import cookies from "vue-cookies";
 
     export default {
@@ -47,7 +47,7 @@ import cookies from "vue-cookies";
             return {
                 // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
-                email: "",
+                // email: "",
                 username: "",
                 firstName: "",
                 lastName: "",
@@ -64,7 +64,7 @@ import cookies from "vue-cookies";
                         // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
                     data : {
-                        email: this.email,
+                        // email: this.email,
                         username: this.username,
                         firstName: this.firstName,
                         lastName: this.lastName,
@@ -74,9 +74,9 @@ import cookies from "vue-cookies";
                     console.log(response);
                     console.log("Successful update");
                     alert('User info. updated!!')
-                    cookies.remove(`clientToken`)
-                    cookies.remove(`client`)
-                    router.push(`/loginClientHome`)
+                    // cookies.remove(`clientToken`)
+                    // cookies.remove(`client`)
+                    // router.push(`/loginClientHome`)
                     }).catch((error)=>{
                     console.log(error);
                     alert('Failed edit');
