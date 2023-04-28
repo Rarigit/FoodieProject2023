@@ -50,7 +50,13 @@
                 <br>
                 <br>
                 <br>
-                <v-btn color="green" large class="ml-5" @click="logClient">Client Login
+                <v-btn color="green" large class="ml-5" :class="{ disabled: disabled }" :disabled="disabled" @click="logClient">
+                    <template v-if="loading">
+                        <v-progress-circular indeterminate color="white"></v-progress-circular>
+                    </template>
+                    <template v-else>
+                        Client Login
+                    </template>
                 </v-btn>
                 <br>
                 <v-spacer></v-spacer>
@@ -93,6 +99,7 @@ import cookies from "vue-cookies";
 import router from '@/router';
 import HeaderProject from "@/components/HeaderProject.vue";
 import FooterProject from "@/components/FooterProject.vue";
+
 // import anime from 'animejs';
 
     export default {
@@ -103,9 +110,10 @@ import FooterProject from "@/components/FooterProject.vue";
         },
         data() {
             return {
+                loading: false,
+                disabled: true,
                 show1: false,
                 url: process.env.VUE_APP_API_URL,
-                // apiKey: process.env.VUE_APP_API_KEY,
                 formData: {
                     email: "",
                     password: "",
@@ -122,14 +130,21 @@ import FooterProject from "@/components/FooterProject.vue";
                 error: false,
             }
         },
+        watch: {
+            formData: {
+                handler() {
+                    this.disabled = !(this.formData.email && this.formData.password);
+                },
+                deep: true,
+            },
+        },
         methods: {
             logClient() {
+                this.disabled = true;
+                this.loading = true;
                 axios.request({
                     method : "POST",
                     url: this.url + "/client-login",
-                    // headers: {
-                    //     'x-api-key' : process.env.VUE_APP_API_KEY,
-                    // },
                     data : {
                         email: this.formData.email,
                         password: this.formData.password,
@@ -141,41 +156,18 @@ import FooterProject from "@/components/FooterProject.vue";
                     cookies.set(`client`, user)
                     let userToken = response.data.token;
                     cookies.set(`clientToken`, userToken);//Actually need this session token to get access to the AccessClientPage
+                    this.formData.email = "";
+                    this.formData.password = "";
+                    this.disabled = false;
+                    this.loading = false;
                     router.push(`/clientProfile`)//Need to router push to an access user page 
                     }).catch((error)=>{
                     console.log(error);
-                    this.error= true
+                    this.error= true;
+                    this.disabled = false;
+                    this.loading = false;
                     })
             },
-            // animate() {
-            //     anime({                                     
-            //         targets: this.$refs.square,
-            //         // translateX: function(el, i) {
-            //         //    return 50 + (-50 * i);
-            //         // },
-            //         translateY: function(el, i) {
-            //             return 250 + (-250 * i);
-            //         },
-            //         scale: function(el, i, l) {
-            //             return (l - i) + .25;
-            //         },
-            //         // rotate: function() { return anime.random(-250, 360); },
-            //         borderRadius: function() { return ['50%', anime.random(10, 35) + '%']; },
-            //         duration: function() { return anime.random(1200, 1800); },
-            //         delay: function() { return anime.random(0, 400); },
-            //         translateX: 1500,
-            //         strokeDashoffset: [anime.setDashoffset, 0],
-            //         easing: 'easeInOutSine',
-            //         direction: 'alternate',
-            //         loop: true
-            //     });
-            // },
-        },
-        mounted () {
-            window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
-            document.cookie = "clientToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "client=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            };
         },
     }
     
