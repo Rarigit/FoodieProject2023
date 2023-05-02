@@ -1,17 +1,11 @@
 <template>
-    <div>
-        <v-card-title class="teal">
-            <div class="fixed">
-                <v-row align-content="center" class="lightbox white--text pa-0 fill-height">
-                    <v-col>
-                        <v-container>
-                            <h1 class="subHeader">Foodze</h1>
-                        </v-container>
-                    </v-col>
-                </v-row>
-            </div>
-        </v-card-title>
-    </div>
+    <v-app-bar app flat class=" header px-12">
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-btn text class="black--text" router-link to="/">Home</v-btn>
+        <v-btn text class="black--text" router-link to="/registerRestaurant">Register Restaurant</v-btn>
+        <v-btn text class="black--text" router-link to="/registerClient">Client Register</v-btn>
+    </v-app-bar>
 </template>
 
 <script>
@@ -21,5 +15,7 @@
 </script>
 
 <style scoped>
-
+.header{
+    background-image: url(@/assets/foodze\ yellow.png);
+}
 </style>

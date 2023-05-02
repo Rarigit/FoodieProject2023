@@ -2,79 +2,74 @@
     <div class="bodyWrap">
         <HeaderProject/>
         <br>
-        <v-row>
-            <h1 class="mx-auto">Restaurant Login</h1>
-        </v-row>
         <br>
         <br>
-        <div>
-            <v-alert v-model="error" type="error" :value="true">Warning: Incorrect Email and/or Password</v-alert>
-        </div>
         <br>
-        <v-container>
-            <v-form class="d-flex align-center">
-                <v-text-field
-                v-model="formData.email"
-                :rules="emailRules"
+        <br>
+        <br>
+        <v-card class="mx-auto px-6 py-8" color="white" max-width="400">
+            <h3>Sign In</h3>
+            <v-form
+            v-model="form"
+            @submit.prevent="onSubmit"
+            >
+            <v-text-field
+                v-model="email"
+                :readonly="loading"
+                :rules="[required]"
+                class="mb-2"
+                clearable
                 label="E-mail"
                 prepend-icon="mdi-email"
                 required
                 />
                 <v-spacer></v-spacer>
-                <v-text-field
-                v-model="formData.password"
+            <v-text-field
+                v-model="password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
+                :rules="[required]"
                 :type="show1 ? 'text' : 'password'"
-                name="input-10-1"
-                label="Enter Password"
+                color="rgb(1, 139, 139)"
+                label="Password"
                 hint="At least 8 characters"
-                counter
-                @click:append="show1 = !show1"
+                variant="underlined"
+                clearable
+                @click="togglePassword"
                 />
                 <br>
                 <v-spacer></v-spacer>
                 <br>
-                <v-btn color="green" large class="styleButton" @click="logStore">Login Restaurant
+                <v-btn 
+                :disabled="!form"
+                :loading="loading"
+                block
+                size="large"
+                type="submit"
+                variant="tonal"
+                @click="logStore"
+                >
+                Login Restaurant
                 </v-btn>
                 <br>
                 <v-spacer></v-spacer>
-                <br>
-                <v-btn class="styleButton" router-link to="/">Home
-                </v-btn>
-                <br>
-                <v-spacer></v-spacer>
-                <v-btn class="styleButton" router-link to="/registerRestaurant">Registration Restaurant
-                </v-btn>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
                 <br>
                 <br>
             </v-form>
-        </v-container>
+        </v-card>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <FooterProject/>
     </div>
 </template>
@@ -152,10 +147,15 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+    background-image: url(@/assets/foodze\ yellow.png);
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
 
     .styleButton{
         color: black;

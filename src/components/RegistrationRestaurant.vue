@@ -2,19 +2,10 @@
     <div class="bodyWrap">
         <HeaderProject/>
         <br>
-        <v-row>
-            <h1 class="mx-auto">Restaurant Signup</h1>
-        </v-row>
-        <v-spacer></v-spacer>
-        <div class="flex align-center">
-            <v-btn class="ml-5 styleButton" router-link to="/">Home
-            </v-btn>
-            <v-btn class="ml-5 styleButton" router-link to="/loginRestaurant">Login Restaurant
-            </v-btn>
-        </div>
-        <v-container>
-            <div class="formData">
-                <v-form>
+        <v-card
+        class="d-flex flex-column justify-center mb-6"
+        >
+        <v-form>
                     <v-text-field
                     v-model="formData.name"
                     :rules="[() => !!formData.name || 'This field is required']"
@@ -78,7 +69,7 @@
                     prepend-icon="mdi-phone"
                     />
                     <v-text-field
-                    v-model="formData.bannerUrL"
+                    v-model="bannerUrL"
                     label="Banner Image"
                     prepend-icon="mdi-mouse"
                     />
@@ -86,10 +77,9 @@
                     </v-btn>
                     <br>
                 </v-form>
-            </div>
             <br>
             <br>
-        </v-container>
+        </v-card>
         <FooterProject/>
     </div>
 </template>
@@ -174,9 +164,14 @@ import FooterProject from "./FooterProject.vue";
 <style scoped>
 
     .bodyWrap{
-        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
-        background-repeat: no-repeat;
-        background-size: cover;
+        background-image: url(@/assets/foodze\ yellow.png);
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
     }
     .styleButton{
         color: black;

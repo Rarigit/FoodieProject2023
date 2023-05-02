@@ -1,51 +1,30 @@
 <template>
-    <v-footer
-        dark
-        bottom
-        fixed
-        padless
+    <v-footer color="#00B0FF">
+    <v-row justify="center" no-gutters>
+        <v-btn
+            v-for="link in links"
+            :key="link"
+            color="bisque"
+            variant="white--text"
+            class="mx-2"
+            rounded="xl"
         >
-        <v-card
-            class="flex"
-            flat
-            tile
-            justify="center"
-            no-gutters
-            >
-
-            <v-card-title class="teal">
-                <strong class="subheading">Rari Design Inc.</strong>
-
-                <v-spacer></v-spacer>
-
-                <v-btn
-                v-for="icon in icons"
-                :key="icon"
-                class="mx-4"
-                dark
-                icon
-                >
-                <v-icon size="24px">
-                    {{ icon }}
-                </v-icon>
-                </v-btn>
-            </v-card-title>
-            
-            <v-card-text class="py-2 white--text text-center">
-                {{ new Date().getFullYear() }} — <strong>All Rights Reserved</strong>
-            </v-card-text>
-        </v-card>
-    </v-footer>
+            {{ link }}
+        </v-btn>
+        <v-col class="text-center mt-4" cols="12">
+            {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </v-col>
+    </v-row>
+</v-footer>
 </template>
 
 <script>
     export default {
         name: "FooterProject",
         data: () => ({
-            icons: [
-                'mdi-twitter',
-                'mdi-instagram',
-                'mdi-facebook'
+            links: [
+                'Home',
+                'Contact Us'
             ],
         }),
     }

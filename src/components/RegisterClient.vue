@@ -2,83 +2,79 @@
     <div class="bodyWrap">
         <HeaderProject/>
             <br>
-            <v-row>
-                <h1 class="mx-auto">Client Register</h1>
-            </v-row>
-            <br>
-                <v-btn class="ml-5 styleButton" 
-                router-link to="/">Client Login
-                </v-btn>
-                <br>
-                <br>
-                <v-btn class="ml-5 styleButton"
-                router-link to="/loginRestaurant">Login Restaurant
-                </v-btn>
-                <br>
-                <br>
-                <v-btn class="ml-5 styleButton"
-                router-link to="/registerRestaurant">Registration Restaurant
-                </v-btn>
             <br>
             <br>
-                <v-container>
-                    <div class="formData">
-                        <v-form>
+            <br>
+            <br>
+            <br>
+            <v-card 
+                class="mx-auto"
+                max-width="600"
+                title="Client Registration"
+                >
+                    <v-container class="formData">
                             <v-text-field
-                            v-model="formData.email"
+                            v-model="email"
                             :rules="emailRules"
-                            label="E-mail"
-                            prepend-icon="mdi-email"
-                            required
+                            color="rgb(1, 139, 139)"
+                            label="Email"
+                            variant="underlined"
                             />
                             <v-text-field
-                            v-model="formData.userName"
-                            :rules="[() => !!formData.userName || 'This field is required']"
-                            label="username"
-                            placeholder="JohnDoe7"
-                            prepend-icon="mdi-account"
-                            required
+                            v-model="userName"
+                            :rules="usernameRules"
+                            color="rgb(1, 139, 139)"
+                            label="Username"
+                            variant="underlined"
                             />
                             <v-text-field
-                            v-model="formData.firstName"
-                            :rules="[() => !!formData.firstName || 'This field is required']"
+                            v-model="firstName"
+                            :rules="nameRules"
+                            color="rgb(1, 139, 139)"
                             label="First Name"
-                            placeholder="John"
-                            prepend-icon="mdi-account"
-                            required
+                            variant="underlined"
                             />
                             <v-text-field
-                            v-model="formData.lastName"
-                            :rules="[() => !!formData.lastName || 'This field is required']"
+                            v-model="lastName"
+                            :rules="nameRules"
+                            color="rgb(1, 139, 139)"
                             label="Last Name"
-                            prepend-icon="mdi-account"
-                            placeholder="Doe"
-                            required
+                            variant="underlined"
                             />
                             <v-text-field
-                            v-model="formData.password"
+                            v-model="password"
                             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                            :rules="[rules.required, rules.min]"
                             :type="show1 ? 'text' : 'password'"
-                            name="input-10-1"
                             label="Enter Password"
-                            hint="At least 8 characters"
-                            counter
-                            prepend-icon="mdi-lock"
-                            @click:append="show1 = !show1"
+                            variant="underlined"
+                            @click="togglePassword"
                             />
                             <br>
-                            <v-btn color="green" large class="styleButton"
-                            @click="postClient">Client Register
+                            <v-checkbox
+                            v-model="terms"
+                            color="rgb(1, 139, 139)"
+                            label="I agree to site terms and conditions"
+                            ></v-checkbox>
+                            <v-btn
+                            block
+                            variant="tonal"
+                            color="green" large class="styleButton"
+                            @click="postClient"
+                            >
+                            Client Register
                             </v-btn>
                             <br>
+                            <div v-if="feedbackMsg">
+                                <p class="feedbackMsg">{{ feedbackMsg }}</p>
+                            </div>
                             <br>
-                            <br>
-                            <br>
-                            <br>
-                        </v-form>
-                    </div>   
-                </v-container>
+                        </v-container>
+                </v-card>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             <FooterProject/>
     </div>
 </template>
@@ -98,46 +94,51 @@ import HeaderProject from "@/components/HeaderProject.vue";
         },
         data() {
             return {
-                ////////////////He made this a function called formData()
                 url: process.env.VUE_APP_API_URL,
-                show1: false,
-                // apiKey: process.env.VUE_APP_API_KEY,
-                formData: {
-                    email: "",
-                    userName: "",
-                    firstName: "",
-                    lastName: "",
-                    password: "",
-                     // pictureUrl: undefined
-                },
-                rules: {
-                    required: value => !!value || 'Required.',
-                    min: v => v.length >= 8 || 'Min 8 characters',
-                    emailMatch: () => (`The email and password you entered don't match`),
-                },
+                valid: false,
+                userName: "",
+                firstName: "",
+                lastName: "",
+                password: "",
+                usernameRules: [
+                    value => {
+                    if (value) return true
+                    return 'Username is required.'
+                    },
+                ],
+                nameRules: [
+                    value => {
+                    if (value) return true
+                    return 'Name is required.'
+                    },
+                ],
+                email: '',
                 emailRules: [
-                    v => !!v || 'E-mail is required',
-                    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                    value => {
+                    if (value) return true
+                    return 'E-mail is required.'
+                    },
+                    value => {
+                    if (/.+@.+\..+/.test(value)) return true
+                    return 'E-mail must be valid.'
+                    },
                 ],
             }
         },
         methods: {
             postClient() {
+                if (this.terms == false){
+                    this.feedbackMsg = "Please click check box to agree to terms and conditions."
+                } else if (this.terms == true){
                 axios.request({///////Mark used axios.post. faster method
-                    //axios.post()
-                    //     process.env.VUE_APP_API_URL + "client post", //Mark set this all up in his env.local
-                    //     this.formData
                     method : "POST",
                     url: this.url + "/client",
-                    // headers: {
-                    //     'x-api-key' : process.env.VUE_APP_API_KEY,
-                    // },
                     data : {
-                        email: this.formData.email,
-                        userName: this.formData.userName,
-                        firstName: this.formData.firstName,
-                        lastName: this.formData.lastName,
-                        password: this.formData.password
+                        email: this.email,
+                        userName: this.userName,
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        password: this.password
                     }
                     }).then((response)=>{
                     console.log(response);
@@ -145,17 +146,36 @@ import HeaderProject from "@/components/HeaderProject.vue";
                     router.push(`/`)
                     }).catch((error)=>{
                     console.log(error);
+                    this.feedbackMsg = error;
+                    this.clearTextBox();
                     })
+                }
             },
+            clearTextBox(){
+                this.username = "";
+                this.firstName = "";
+                this.lastName = "";
+                this.email = "";
+                this.username = "";
+                this.password = "";
+            },
+            togglePassword() {
+                this.show = !this.show;
+            }
         },
     }
 </script>
     
 <style scoped>
     .bodyWrap{
-        background-image: url(https://imgs.search.brave.com/HLeqRVTtcQlw4vwIJr8tkCJawN5obKK30DKXmuxJ1LA/rs:fit:920:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5h/VWpPUENZSE5ZV2Qx/Z3NJRmU3bldRSGFE/MCZwaWQ9QXBp);
-        background-repeat: no-repeat;
-        background-size: cover;
+        background-image: url(@/assets/foodze\ yellow.png);
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
     }
     .styleButton{ 
         color: black;
@@ -164,9 +184,13 @@ import HeaderProject from "@/components/HeaderProject.vue";
     }
 
     .formData{
-        width: 50vw;
-        transform: relative;
-        left: 50%;
-        transform: translateX(50%);
+        background-color: white;  
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 8px;
+        padding: 40px;
+    }
+
+    .feedbackMsg{
+    margin-top: 30px;
     }
 </style>
