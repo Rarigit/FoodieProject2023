@@ -13,6 +13,7 @@
                 title="Client Registration"
                 >
                     <v-container class="formData">
+                    <h3 class="cardTitle">Client Register</h3>
                             <v-text-field
                             v-model="email"
                             :rules="emailRules"
@@ -183,11 +184,15 @@ import HeaderProject from "@/components/HeaderProject.vue";
         box-shadow: 2px 2px 3px;
     }
 
+    .cardTitle{
+        text-align: center;
+    }
     .formData{
         background-color: white;  
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        border-radius: 8px;
         padding: 40px;
+        border: 3px solid black;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 
     .feedbackMsg{

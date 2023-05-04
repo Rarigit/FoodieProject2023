@@ -1,10 +1,7 @@
 <template>
     <div>
         <v-container>
-            <h2>Delete User</h2>
-            <v-btn color="green" large class="styleButton"
-            @click="deleteClient">Delete User
-            </v-btn>
+            <v-btn color="green" large class="styleButton" @click="deleteClient">Delete User</v-btn>
         </v-container>
     </div>
 </template>
@@ -55,8 +52,7 @@ import cookies from "vue-cookies";
 
 <style scoped>
 .styleButton{
-    color: black;
+    color: white;
     height: 7vh;
-    box-shadow: 2px 2px 3px;
 }
 </style>

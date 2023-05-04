@@ -2,13 +2,11 @@
     <div class="bodyWrap">
     <HeaderProject/>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <v-container v-if="!loggedIn">
-        <v-row>
-            <h1 class="mx-auto">Client Profile</h1>
-        </v-row>
-        <br>
-        <br>
-        <br>
         <div v-for="client in clients" :key="client.id">
             <v-row>
                 <h2 class="mx-auto">{{client.username}}</h2>
@@ -19,25 +17,25 @@
         </div>
         <br>
         <br>
-        <v-row>
-            <v-btn class="mx-auto styleButton" router-link to="restPublic">See Restaurants
-        </v-btn>
-        </v-row>
-        <br>
         <ClientUpdate/>
         <br>
-        <v-row>
+        <br>
+        <br>
+        <br>
+        <v-row class="mx-auto">
+            <v-spacer></v-spacer>
             <v-btn class="mx-auto styleButton" @click="logOut">Client Logout</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn class="mx-auto styleButton" router-link to="restPublic">See Restaurants</v-btn>
+            <v-spacer></v-spacer>
         </v-row>
         <br>
-        <ClientDelete/>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </v-container>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <FooterProject/>
     </div>
 </template>
@@ -47,7 +45,6 @@ import cookies from "vue-cookies";
 import axios from "axios";
 import router from '@/router';
 import ClientUpdate from "@/components/ClientUpdate.vue";
-import ClientDelete from "@/components/ClientDelete.vue";
 import HeaderProject from "@/components/HeaderProject.vue";
 import FooterProject from "@/components/FooterProject.vue";
 
@@ -56,7 +53,6 @@ import FooterProject from "@/components/FooterProject.vue";
         name: "ClientProfile",
         components: {
             ClientUpdate,
-            ClientDelete,
             HeaderProject,
             FooterProject,
             //Only once the client is logged in will they have the option to go to Restaurants page
@@ -99,9 +95,16 @@ import FooterProject from "@/components/FooterProject.vue";
 
 <style scoped>
 .bodyWrap{
-        background-image: url(https://imgs.search.brave.com/R43Gdc2AQBiKlWckaWpR5-s3blyDQ3ONG55iwipwWEM/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5C/b25pS1hHYlAxSHB6/YkozVlpiM3VRSGFF/NyZwaWQ9QXBp);
-        background-repeat: no-repeat;
-        background-size: cover;
+    background-image: url(@/assets/foodze\ yellow.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+    /* height: 100vh;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;  */
     }
     .styleButton{
         color: black;

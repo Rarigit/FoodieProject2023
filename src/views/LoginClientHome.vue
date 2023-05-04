@@ -8,7 +8,7 @@
         <br>
         <br>
         <v-card class="mx-auto px-6 py-8" color="white" max-width="400">
-            <h3>Sign In</h3>
+            <h3> Client Sign In</h3>
             <v-form
             v-model="form"
             @submit.prevent="onSubmit"
@@ -162,6 +162,21 @@ import FooterProject from "@/components/FooterProject.vue";
         transform: translateX(-50%);
         z-index: 1;
     }
+
+.v-card{
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 25px;
+    /* position: absolute; */
+    width: 40%;
+    /* top: 30%;
+    left: 50%; */
+    /* transform: translateX(-50%); */
+    border: 3px solid black;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
 
 .v-btn{
     margin-top: 25px;

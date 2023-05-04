@@ -6,7 +6,7 @@
             <br>
             <h2>Select via Store ID</h2>
             <br>
-            <h2 v-for="restaurant,index in restaurants" :key="index">
+            <h2 v-for="restaurant,index in restaurant_alpha" :key="index">
                     <h3 v-if="restaurant">
                         <v-row no-gutters>
                             <v-col class="d-flex">
@@ -31,7 +31,7 @@
                                 <v-spacer></v-spacer>
                                 <v-spacer></v-spacer>
                                 <!-- {{restaurant.phoneNum}} -->
-                                <v-btn class="mx-auto" color="green" large router-link :to="'/menuPublic/'+ restaurant.restaurantId">{{restaurant.restaurantId}}</v-btn>
+                                <v-btn class="mx-auto" color="green" large router-link :to="'/menuPublic/'+ restaurant.id">{{restaurant.id}}</v-btn>
                             </v-col>
                         </v-row>
                         <br>
@@ -73,14 +73,16 @@ import FooterProject from "@/components/FooterProject.vue";
             return {
                 // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
+                id: "",
                 name: "",
                 address: "",
-                bio: "",
                 city: "",
                 email: "",
                 phoneNum: "",
-                restaurantId: "",
-                restaurants: []
+                bannerUrl: "",
+                bio: "",
+                // restaurantId: "",
+                restaurant_alpha: []
             }
         },
         methods: {
@@ -94,21 +96,20 @@ import FooterProject from "@/components/FooterProject.vue";
                 axios.request({
                     method : "GET",
                     url: this.url + "/restaurant",
-                    // headers: {
-                    //     'x-api-key' : process.env.VUE_APP_API_KEY,
-                    // },
                 data : {
+                    id: this.id,
                     name: this.name,
                     address: this.address,
-                    bio: this.bio,
                     city: this.city,
                     email: this.email,
                     phoneNum: this.phoneNum,
-                    restaurantId: this.restaurantId,
+                    bannerUrl: this.bannerUrl,
+                    bio: this.bio,
+                    // restaurantId: this.restaurantId,
                 }
                 }).then((response)=>{
                 console.log(response);
-                this.restaurants = response.data
+                this.restaurant_alpha = response.data
                 console.log("Success");
                 }).catch((error)=>{
                 console.log(error);

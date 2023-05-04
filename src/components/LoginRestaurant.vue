@@ -8,7 +8,7 @@
         <br>
         <br>
         <v-card class="mx-auto px-6 py-8" color="white" max-width="400">
-            <h3>Sign In</h3>
+            <h3>Restaurant Sign In</h3>
             <v-form
             v-model="form"
             @submit.prevent="onSubmit"
@@ -134,14 +134,6 @@ import FooterProject from "@/components/FooterProject.vue";
                     })
             }
         },
-        mounted () {
-            // window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
-            // document.cookie = "restaurantToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/loginRestaurant;";
-            // document.cookie = "restaurantID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/loginRestaurant;";
-            // };
-            // this.$root.$emit('restaurantToken',this.storeToken)
-            // this.$root.$emit('restaurantID', this.storeToken)
-        },
     }
 </script>
 
@@ -157,6 +149,19 @@ import FooterProject from "@/components/FooterProject.vue";
     z-index: 1;
 }
 
+.v-card{
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 25px;
+    /* position: absolute; */
+    width: 40%;
+    /* top: 30%;
+    left: 50%; */
+    /* transform: translateX(-50%); */
+    border: 3px solid black;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
     .styleButton{
         color: black;
         height: 7vh;

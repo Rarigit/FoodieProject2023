@@ -2,84 +2,141 @@
     <div class="bodyWrap">
         <HeaderProject/>
         <br>
+        <br>
+        <br>
+        <br>
         <v-card
         class="d-flex flex-column justify-center mb-6"
         >
         <v-form>
-                    <v-text-field
-                    v-model="formData.name"
-                    :rules="[() => !!formData.name || 'This field is required']"
-                    label="Store Name"
-                    :error-messages="errorMessages"
-                    placeholder="Leo's Pizzeria"
-                    prepend-icon="mdi-account"
-                    required
-                    />
-                    <v-text-field
-                    v-model="formData.address"
-                    :rules="[
-                    () => !!formData.address || 'This field is required',
-                    () => !!formData.address && formData.address.length <= 25 || 'Address must be less than 25 characters',
-                    addressCheck
-                    ]"
-                    label="Address Line"
-                    placeholder="Snowy Rock Pl"
-                    counter="25"
-                    prepend-icon="mdi-map"
-                    required
-                    />
-                    <v-text-field
-                    v-model="formData.bio"
-                    label="Bio"
-                    prepend-icon="mdi-bio"
-                    :rules="[() => !!formData.bio || 'This field is required']"
-                    placeholder="Best restaurant in town!"
-                    required
-                    />
-                    <v-text-field
-                    v-model="formData.city"
-                    :rules="[() => !!formData.city || 'This field is required', addressCheck]"
-                    label="City"
-                    placeholder="El Paso"
-                    prepend-icon="mdi-city"
-                    required
-                    />
-                    <v-text-field
-                    v-model="formData.email"
-                    :rules="emailRules"
-                    label="E-mail"
-                    prepend-icon="mdi-email"
-                    required
-                    />
-                    <v-text-field
-                    v-model="formData.password"
-                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min]"
-                    :type="show1 ? 'text' : 'password'"
-                    name="input-10-1"
-                    label="Enter Password"
-                    hint="At least 8 characters"
-                    prepend-icon="mdi-lock"
-                    counter
-                    @click:append="show1 = !show1"
-                    />
-                    <v-text-field
-                    v-model="formData.phoneNum"
-                    label="phone"
-                    prepend-icon="mdi-phone"
-                    />
-                    <v-text-field
-                    v-model="bannerUrL"
-                    label="Banner Image"
-                    prepend-icon="mdi-mouse"
-                    />
-                    <v-btn color="green" large class="styleButton" @click="registerRestaurant">Register Restaurant
-                    </v-btn>
-                    <br>
-                </v-form>
-            <br>
-            <br>
+            <v-container>
+                <h3 class="cardTitle">Restaurant Register</h3>
+                <br>
+                <v-row>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="name"
+                        :rules="[() => !!name || 'This field is required']"
+                        label="Store Name"
+                        :error-messages="errorMessages"
+                        placeholder="Leo's Pizzeria"
+                        prepend-icon="mdi-account"
+                        required
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="address"
+                        :rules="[
+                        () => !!address || 'This field is required',
+                        () => !!address && address.length <= 25 || 'Address must be less than 25 characters',
+                        addressCheck
+                        ]"
+                        label="Address Line"
+                        placeholder="Snowy Rock Pl"
+                        counter="25"
+                        prepend-icon="mdi-map"
+                        required
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >   
+                        <v-text-field
+                        v-model="bio"
+                        label="Bio"
+                        prepend-icon="mdi-bio"
+                        :rules="[() => !!bio || 'This field is required']"
+                        placeholder="Best restaurant in town!"
+                        required
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="city"
+                        :rules="[() => !!city || 'This field is required', addressCheck]"
+                        label="City"
+                        placeholder="El Paso"
+                        prepend-icon="mdi-city"
+                        required
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="email"
+                        :rules="emailRules"
+                        label="E-mail"
+                        prepend-icon="mdi-email"
+                        required
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="password"
+                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                        :rules="[rules.required, rules.min]"
+                        :type="show1 ? 'text' : 'password'"
+                        name="input-10-1"
+                        label="Enter Password"
+                        hint="At least 8 characters"
+                        prepend-icon="mdi-lock"
+                        counter
+                        @click:append="show1 = !show1"
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="phoneNum"
+                        label="Phone"
+                        prepend-icon="mdi-phone"
+                        ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="6"
+                    >
+                        <v-text-field
+                        v-model="bannerUrL"
+                        label="Banner Image"
+                        prepend-icon="mdi-mouse"
+                        ></v-text-field>
+                    </v-col>
+                </v-row>
+            </v-container>
+                <v-btn color="green" large class="styleButton" @click="registerRestaurant">Register Restaurant
+                </v-btn>
+                <br>
+        </v-form>
         </v-card>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <FooterProject/>
     </div>
 </template>
@@ -99,20 +156,18 @@ import FooterProject from "./FooterProject.vue";
         },
         data() {
             return {
-                // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
                 show1: false,
+                valid: false,
                 errorMessages: "",
-                formData: {
-                    name: "",
-                    address: "",
-                    bio: "",
-                    city: "",
-                    email: "",
-                    password: "",
-                    phoneNum: "",
-                    bannerUrl: undefined,
-                },
+                name: "",
+                address: "",
+                bio: "",
+                city: "",
+                email: "",
+                password: "",
+                phoneNum: "",
+                bannerUrl: undefined,
                 rules: {
                     required: value => !!value || 'Required.',
                     min: v => v.length >= 8 || 'Min 8 characters',
@@ -133,14 +188,14 @@ import FooterProject from "./FooterProject.vue";
                     //     'x-api-key' : process.env.VUE_APP_API_KEY,
                     // },
                     data : {
-                        name: this.formData.name,
-                        address: this.formData.address,
-                        bio: this.formData.bio,
-                        city: this.formData.city,
-                        email: this.formData.email,
-                        password: this.formData.password,
-                        phoneNum: this.formData.phoneNum,
-                        bannerUrl: this.formData.bannerUrl,
+                        name: this.name,
+                        address: this.address,
+                        bio: this.bio,
+                        city: this.city,
+                        email: this.email,
+                        password: this.password,
+                        phoneNum: this.phoneNum,
+                        bannerUrl: this.bannerUrl,
                     }
                     }).then((response)=>{
                     console.log(response);
@@ -156,6 +211,15 @@ import FooterProject from "./FooterProject.vue";
                 : ''
                 return true
             },
+            clearTextBox(){
+                this.name = "";
+                this.address = "";
+                this.bio = "";
+                this.city = "";
+                this.email = "";
+                this.password = "";
+                this.phoneNum = "";
+            }
         },
     }
 
@@ -173,17 +237,40 @@ import FooterProject from "./FooterProject.vue";
         transform: translateX(-50%);
         z-index: 1;
     }
-    .styleButton{
-        color: black;
-        height: 7vh;
-        box-shadow: 2px 2px 3px;
-    }
+    
+    .v-card{
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 25px;
+    background-position: center;
+    /* position: absolute; */
+    width: 40%;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid black;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
-    .formData{
-        width: 50vw;
-        transform: relative;
-        left: 50%;
-        transform: translateX(50%);
-    }
+.cardTitle{
+    text-align: center;
+}
+.v-btn{
+    font-size: 12pt;
+    color: white;
+    background-color: black;
+}
+p{
+    color: black;
+    font-size: 16pt;
+    font-weight: bold;
+}
+.error{
+    color: white;
+    font-weight: bold;
+    font-size: 10pt;
+    margin-top: 5px;
+}
 
 </style>
