@@ -1,6 +1,6 @@
 <template>
     <div class="bodyWrap">
-        <HeaderProject/>
+        <!-- <HeaderProject/> -->
         <v-container>
             <br>
             <v-row>
@@ -65,13 +65,13 @@
 import cookies from "vue-cookies";
 import axios from "axios";
 import router from '@/router';
-import HeaderProject from "@/components/HeaderProject.vue";
+// import HeaderProject from "@/components/HeaderProject.vue";
 import FooterProject from "@/components/FooterProject.vue";
 
     export default {
         name: "OrderRegister",
         components: {
-            HeaderProject,
+            // HeaderProject,
             FooterProject,
         },
         data() {
