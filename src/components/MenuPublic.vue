@@ -126,9 +126,9 @@ import FooterProject from "@/components/FooterProject.vue";
                 method : "GET",
                 url: this.url + "/menu",
                 params : {
-                    'restaurantId': this.$route.params.menuId,//Major key
-                    // restaurantId : this.restaurantId,
-                    'menuId': this.menuID,
+                    restaurantId: this.$route.params.menuId,//Major key
+                    // 'restaurantId' : this.restaurantId,
+                    menuId: this.menuID,
                     // menuId : this.menuId,
                     // 'id': this.id,
                     // 'name': this.name,
@@ -142,6 +142,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 this.menu_alpha = response.data;
                 console.log("Menu alpha bruv");
                 cookies.set('selectStore', response.data[0].restaurantId);
+                // cookies.set('menuItemId', response.data[0].id)
                 }).catch((error)=>{
                 console.log(error);
                 alert(`Access Denied`)

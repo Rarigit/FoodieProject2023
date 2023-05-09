@@ -77,10 +77,15 @@ import FooterProject from "@/components/FooterProject.vue";
         data() {
             return {
                 url: process.env.VUE_APP_API_URL,
+                // menuItemId: cookies.get('menuItemId'),
                 restaurantId: cookies.get('selectStore'),///Only one restaurantId per menu data so this was easy to set.
+                clientId: cookies.get('client'),
+                // restaurantId: "",
+                // clientId: "",
                 // apiKey: process.env.VUE_APP_API_KEY,
                 items: [cookies.get('menuCart')],///Setting the items array needed in the api call to the array of strings gleaned from my cart cookie
                 trolleys: [cookies.get('nameCart')],
+                // token: ""
             }   
         },
         methods: {
@@ -94,6 +99,8 @@ import FooterProject from "@/components/FooterProject.vue";
                     },
                     data : {
                         restaurantId: this.restaurantId,
+                        clientId: this.clientId,
+                        // menuItemId: this.menuItemId,
                         items: this.items.map(string => parseInt(string,10)),///HAD TO TURN THAT ARRAY OF STRINGS INTO AN ARRAY OF INTEGERS!!
                     },
                     }).then((response)=>{
