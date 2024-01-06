@@ -85,30 +85,38 @@ import FooterProject from "@/components/FooterProject.vue";
                 // apiKey: process.env.VUE_APP_API_KEY,
                 items: [cookies.get('menuCart')],///Setting the items array needed in the api call to the array of strings gleaned from my cart cookie
                 trolleys: [cookies.get('nameCart')],
-                // token: ""
+                token: cookies.get('clientToken'),
+                // order_id: [],
             }   
         },
         methods: {
             setOrder() {
+                console.log("Sending token:", this.token)
                 axios.request({
                     method : "POST",
                     url: this.url + "/order",
                     headers: {
-                        'token' : cookies.get('clientToken'),
+                        token: cookies.get('clientToken')
+                        // 'clientToken': this.token
                         // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
                     data : {
-                        restaurantId: this.restaurantId,
-                        clientId: this.clientId,
+                        // restaurantId: this.restaurantId.toString(),
+                        clientId: this.clientId.toString(),
+                        // clientId: this.clientId,
                         // menuItemId: this.menuItemId,
-                        items: this.items.map(string => parseInt(string,10)),///HAD TO TURN THAT ARRAY OF STRINGS INTO AN ARRAY OF INTEGERS!!
+                        items: this.items.map(item => parseInt(item,10)),///HAD TO TURN THAT ARRAY OF STRINGS INTO AN ARRAY OF INTEGERS!!
+                        // items: this.items,
+                        // restaurantId: this.restaurantId
+                        restaurantId: this.restaurantId.toString(),
+                        // order_id: this.order_id
                     },
                     }).then((response)=>{
                     console.log(response);
                     console.log("Order created");
                     alert('Order completed!')
-                    cookies.remove('nameCart');
-                    cookies.remove('menuCart');
+                    // cookies.remove('nameCart');
+                    // cookies.remove('menuCart');
                     // cookies.remove('') --> or else the order will keep populating and not leave. Good code
                     }).catch((error)=>{
                     console.log(error);
@@ -132,12 +140,12 @@ import FooterProject from "@/components/FooterProject.vue";
                 router.push(`/`)
             },
         },
-        mounted () {
-            window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
-                document.cookie = "nameCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                document.cookie = "menuCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                };
-        },
+        // mounted () {
+        //     window.onbeforeunload = function() {////Sick code deletes cookies after I press the back button. Its in mounted as well so it applies automatically.
+        //         document.cookie = "nameCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //         document.cookie = "menuCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //         };
+        // },
     }   
 </script>
 
