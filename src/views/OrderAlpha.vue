@@ -84,7 +84,8 @@ import OrderPatch from "@/components/OrderPatch.vue";
             return {
                 // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
-                clientToken: cookies.get('clientToken'),
+                token: cookies.get('clientToken'),
+                client: cookies.get('client'),
                 orders: [],
                 alignments: [
                     'start',
@@ -109,14 +110,17 @@ import OrderPatch from "@/components/OrderPatch.vue";
                 url: this.url + "/order-client",
                 headers: {
                     // 'x-api-key' : process.env.VUE_APP_API_KEY,
-                    'token': cookies.get('clientToken'),
-                },                                      
+                    token: cookies.get('clientToken'),
+                },
+                params : {
+                        'client': this.client,
+                }                                      
                 }).then((response)=>{
                 console.log(response);
                 this.orders = response.data;
                 console.log("Success");
                 }).catch((error)=>{
-                console.log(error);
+                console.log(error.response);
                 alert(`Access Denied`)
                 cookies.remove(`clientToken`);
                 cookies.remove(`client`);
