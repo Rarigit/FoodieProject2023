@@ -54,6 +54,10 @@
                 <v-spacer></v-spacer>
                 <br>
                 <br>
+                <div v-if="feedbackMsg">
+                    <p class="feedbackContainer"> {{ feedbackMsg }}</p>
+                </div>
+                <br>
             </v-form>
         </v-card>
         <br>
@@ -82,33 +86,39 @@ import HeaderProject from "@/components/HeaderProject.vue";
 import FooterProject from "@/components/FooterProject.vue";
 
     export default {
-    name: "LoginRestaurant",
-    components: {
-        HeaderProject,
-        FooterProject
-    },
-    data() {
-        return {
+        name: "LoginRestaurant",
+        components: {
+            HeaderProject,
+            FooterProject
+        },
+        data() {
+            return {
+                loading: false,
+                show1: false,
+                form: false,
+                url: process.env.VUE_APP_API_URL,
+                email: "",
+                password: "",
+                feedbackMsg: "",
             // apiKey: process.env.VUE_APP_API_KEY,
-            url: process.env.VUE_APP_API_URL,
-            show1: false,
-            formData: {
-                    email: "",
-                    password: "",
-                },
-                rules: {
-                    required: value => !!value || 'Required.',
-                    min: v => v.length >= 8 || 'Min 8 characters',
-                    emailMatch: () => (`The email and password you entered don't match`),
-                },
-                emailRules: [
-                    v => !!v || 'E-mail is required',
-                    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-                ],
-                error: false
-        }
-    },
-    methods: {
+            // url: process.env.VUE_APP_API_URL,
+            // show1: false,
+            // formData: {
+            //         email: "",
+            //         password: "",
+            //     },
+            //     rules: {
+            //         required: value => !!value || 'Required.',
+            //         min: v => v.length >= 8 || 'Min 8 characters',
+            //         emailMatch: () => (`The email and password you entered don't match`),
+            //     },
+            //     emailRules: [
+            //         v => !!v || 'E-mail is required',
+            //         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            //     ],
+            }
+        },
+        methods: {
             logStore() {
                 axios.request({
                     method : "POST",
@@ -117,8 +127,8 @@ import FooterProject from "@/components/FooterProject.vue";
                     //     'x-api-key' : process.env.VUE_APP_API_KEY,
                     // },
                     data : {
-                        email: this.formData.email,
-                        password: this.formData.password
+                        email: this.email,
+                        password: this.password
                     }
                     }).then((response)=>{
                     console.log(response);
@@ -130,8 +140,22 @@ import FooterProject from "@/components/FooterProject.vue";
                     router.push(`/restProfile`)
                     }).catch((error)=>{
                     console.log(error);
-                    this.error= true
+                    this.email= "";
+                    this.password = "";
+                    this.feedbackMsg = error;
+                    // this.error= true
                     })
+            },
+            onSubmit () {
+                if (!this.form) return
+                this.loading = true
+                setTimeout(() => (this.loading = false), 2000)
+            }, 
+            required (v) {
+                return !!v || 'Field is required'
+            },
+            togglePassword() {
+                this.show = !this.show;
             }
         },
     }
