@@ -17,7 +17,12 @@
                 v-model="price"
                 label="Price"
                 prepend-icon="mdi-bio"
-                />
+                /> 
+                <!-- <v-text-field
+                v-model="id"
+                label="MenuId"
+                prepend-icon="mdi-id-card"
+                /> -->
                 <v-btn color="green" large class="styleButton" @click="createMenu">Create Menu Item
                 </v-btn>
             </v-form>
@@ -52,13 +57,14 @@ import cookies from "vue-cookies";
                     url: this.url + "/menu",
                     headers: {
                         // 'x-api-key' : process.env.VUE_APP_API_KEY,
-                        'token' : cookies.get('restaurantToken'),
+                        token : cookies.get('restaurantToken'),
+                        restaurantID: cookies.get('restaurantID')//Added this to headers as i kept getting errors whenever i tried to create a menu. Seems to work
                     },
                     data : {
                         name: this.name,
                         description: this.description,
                         price: this.price,
-                        menuId: this.menuId,
+                        // menuId: this.menuId,
                     },
                     }).then((response)=>{
                     console.log(response);

@@ -23,6 +23,11 @@
                 label="menuId"
                 prepend-icon="mdi-bio"
                 />
+                <v-text-field
+                v-model="imageUrl"
+                label="imageUrl"
+                prepend-icon="mdi-image"
+                />
                 <v-btn color="green" large class="mx-auto styleButton" @click="editMenu">Save changes
                 </v-btn>
             </v-form>
@@ -33,7 +38,7 @@
 
 <script>
 import axios from "axios";
-import router from "@/router";
+// import router from "@/router";
 import cookies from "vue-cookies";
 
     export default {
@@ -44,8 +49,11 @@ import cookies from "vue-cookies";
                 url: process.env.VUE_APP_API_URL,
                 name: "",
                 description: "",
-                price: [],
-                menuId: [],
+                // price: [],
+                // menuId: [],
+                price: null,
+                menuId: null,
+                imageUrl: ""
             }
         },
         methods: {
@@ -55,21 +63,24 @@ import cookies from "vue-cookies";
                     url: this.url + "/menu",
                     headers: {
                         // 'x-api-key' : process.env.VUE_APP_API_KEY,
-                        'token' : cookies.get('restaurantToken'),
+                        token : cookies.get('restaurantToken'),
+                        restaurantID: cookies.get('restaurantID')//Added this to headers as i kept getting errors whenever i tried to create a menu. Seems to work
                     },
                     data : { //Correct Method. Mark confirmed.
                         name: this.name,
                         description: this.description,
-                        price: this.price,
-                        menuId: this.menuId,
+                        price: Number(this.price),//Convert to number
+                        menuId: Number(this.menuId), //Convert to number
+                        imageUrl: this.imageUrl
                     }
                     }).then((response)=>{
                     console.log(response);
                     console.log("Successful update");
                     alert('User info. updated!!')
-                    router.push(`/loginRestaurant`)
+                    // router.push(`/menuProfile`)
+                    window.location.reload();
                     }).catch((error)=>{
-                    console.log(error);
+                    console.log(error.response);
                     alert('Failed edit');
                     })
             }

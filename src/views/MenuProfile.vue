@@ -21,7 +21,7 @@
                     <br>
                     <h3 class="mx-auto">${{menu.price}}</h3>
                     <br>
-                    <h3 class="mx-auto">MenuId: {{menu.menuId}}</h3>
+                    <h3 class="mx-auto">MenuId: {{menu.id}}</h3>
                 </v-row>
             </h2>
             <br>

@@ -8,7 +8,7 @@
             <br>
             <br>
             <br>
-        <h3>Confirm Client Order</h3>
+        <h3>Complete Client Order</h3>
             <br>
             <br>
             <v-form>
@@ -18,12 +18,19 @@
                     label="Enter orderId"
                     prepend-icon="mdi-mouse"
                     />
-                    <v-spacer></v-spacer>
+                    <v-switch
+                        v-model="completeOrder"
+                        label="completeOrder"
+                        prepend-icon="mdi-check"
+                        :value="completeOrder"
+                        color="red"
+                    ></v-switch>
+                    <!-- <v-spacer></v-spacer>
                     <v-text-field class="mx-auto"
                     v-model="confirmOrder"
                     label="Enter (True/False)"
                     prepend-icon="mdi-pen"
-                    />
+                    /> -->
                     <v-spacer></v-spacer>
                     <v-btn class="mx-auto styleButton" large color="green" @click="confirmStoreOrder">Save Changes</v-btn>
                 </v-row>
@@ -46,13 +53,16 @@ import cookies from "vue-cookies";
                 // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
                 restaurantToken: cookies.get('restaurantToken'),
+                restaurantId: cookies.get('restaurantId'),
                 orderId: "",
-                confirmOrder: true,
-                // completeOrder: true,//Can only have either confirm or complete.
+                // confirmOrder: true,
+                completeOrder: true,//Can only have either confirm or complete.
             }
         },
         methods: {
             confirmStoreOrder() {
+                // Convert 'True'/'False' string to 1/0
+                let isCompleteConverted = this.completeOrder ? 1 : 0;
                 axios.request({
                     method : "PATCH",
                     url: this.url + "/order-restaurant",
@@ -62,8 +72,9 @@ import cookies from "vue-cookies";
                     },
                     data : {
                         orderId: this.orderId,
-                        confirmOrder: this.confirmOrder,
-                        // completeOrder: this.completeOrder
+                        restaurantId: this.restaurantId,
+                        // confirmOrder: this.confirmOrder,
+                        completeOrder: isCompleteConverted
                     }
                     }).then((response)=>{
                     console.log(response);
