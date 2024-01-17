@@ -3,9 +3,13 @@
         <HeaderProject/>
         <v-container>
             <br>
+            <br>
+            <br>
+            <br>
             <v-row>
-                <h1 class="mx-auto">Menu Profile (Restaurant Owners Only)</h1>
+                <h1 class="mx-auto profileHead">Menu Profile (Restaurant Owners Only)</h1>
             </v-row>
+            <br>
             <br>
             <v-btn router-link to="/restOrderAlpha" class="mx-auto styleButton" large color="red">Go To Client Orders</v-btn>
             <br>
@@ -26,13 +30,22 @@
             </h2>
             <br>
             <br>
-            <RestaurantMenu/>
+            <v-card class="menuCard">
+                <RestaurantMenu/>
+            </v-card>
+            <!-- <RestaurantMenu/> -->
             <br>
             <br>
-            <MenuUpdate/>
+            <v-card class="menuCard">
+                <MenuUpdate/>
+            </v-card>
+            <!-- <MenuUpdate/> -->
             <br>
             <br>
-            <MenuDelete/>
+            <v-card class="menuCard">
+                <MenuDelete/>
+            </v-card>
+            <!-- <MenuDelete/> -->
             <br>
             <br>
             <v-row>
@@ -129,4 +142,18 @@ import FooterProject from "@/components/FooterProject.vue";
         height: 7vh;
         box-shadow: 2px 2px 3px;
     }
+
+.menuCard{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHTDwhpx0B-NbeRBjbYpojpEgXb1eRcLOzgA&usqp=CAU");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.profileHead{
+    font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 </style>

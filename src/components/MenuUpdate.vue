@@ -1,7 +1,14 @@
 <template>
     <div>
         <v-container>
-            <h2>Edit Restaurant Menu</h2>
+            <h2 class="headLine">Edit Menu</h2>
+            <v-alert
+                type="error"
+                v-model="showAlert"
+                dismissible
+            >
+                {{ alertMessage }}
+            </v-alert>
             <v-form>
                 <v-text-field
                 v-model="name"
@@ -53,7 +60,9 @@ import cookies from "vue-cookies";
                 // menuId: [],
                 price: null,
                 menuId: null,
-                imageUrl: ""
+                imageUrl: "",
+                showAlert: false,
+                alertMessage: ""
             }
         },
         methods: {
@@ -76,12 +85,22 @@ import cookies from "vue-cookies";
                     }).then((response)=>{
                     console.log(response);
                     console.log("Successful update");
-                    alert('User info. updated!!')
+                    this.alertMessage = 'Menu item updated successfully!';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
                     // router.push(`/menuProfile`)
                     window.location.reload();
                     }).catch((error)=>{
                     console.log(error.response);
-                    alert('Failed edit');
+                    this.alertMessage = 'Failed to update menu item. Try again.';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
                     })
             }
         },
@@ -97,4 +116,12 @@ import cookies from "vue-cookies";
         height: 7vh;
         box-shadow: 2px 2px 3px;
     }
+.headLine{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 </style>

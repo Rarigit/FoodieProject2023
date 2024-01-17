@@ -1,7 +1,14 @@
 <template>
     <div>
         <v-container>
-            <h2>Make a Menu</h2>
+            <h2 class="headLine">Make a Menu</h2>
+            <v-alert
+                type="error"
+                v-model="showAlert"
+                dismissible
+            >
+                {{ alertMessage }}
+            </v-alert>
             <v-form>
                 <v-text-field
                 v-model="name"
@@ -18,11 +25,11 @@
                 label="Price"
                 prepend-icon="mdi-bio"
                 /> 
-                <!-- <v-text-field
-                v-model="id"
-                label="MenuId"
-                prepend-icon="mdi-id-card"
-                /> -->
+                <v-text-field
+                v-model="imageUrl"
+                label="imageUrl"
+                prepend-icon="mdi-image"
+                /> 
                 <v-btn color="green" large class="styleButton" @click="createMenu">Create Menu Item
                 </v-btn>
             </v-form>
@@ -47,7 +54,10 @@ import cookies from "vue-cookies";
                 url: process.env.VUE_APP_API_URL,
                 name: "",
                 description: "",
-                price: [],
+                price: null,
+                imageUrl: "",
+                showAlert: false,
+                alertMessage: ""
             }
         },
         methods: {
@@ -63,16 +73,30 @@ import cookies from "vue-cookies";
                     data : {
                         name: this.name,
                         description: this.description,
-                        price: this.price,
+                        price: Number(this.price), //Convert to number
+                        imageUrl: this.imageUrl
                         // menuId: this.menuId,
                     },
                     }).then((response)=>{
                     console.log(response);
                     console.log("Menu item created");
-                    alert('Menu item created!')
+                    this.alertMessage = 'Menu item created successfully!';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
+                    // alert('Menu item created!')
+                    window.location.reload();
                     }).catch((error)=>{
                     console.log(error);
-                    alert('Failed to update Menu!')
+                    this.alertMessage = 'Failed to create menu item. Try again.';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
+                    // alert('Failed to update Menu!')
                     })
             },
         },
@@ -88,4 +112,11 @@ import cookies from "vue-cookies";
         height: 7vh;
         box-shadow: 2px 2px 3px;
     }
+.headLine{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 </style>
