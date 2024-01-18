@@ -1,5 +1,5 @@
 <template>
-    <v-footer color="#00B0FF">
+    <v-footer class="light-black-footer">
     <v-row justify="center" no-gutters>
         <v-btn
             v-for="link in links"
@@ -11,7 +11,7 @@
         >
             {{ link }}
         </v-btn>
-        <v-col class="text-center mt-4" cols="12">
+        <v-col class="px-4 py-2 blue text-center w-100" cols="12">
             {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
         </v-col>
     </v-row>
@@ -23,6 +23,7 @@
         name: "FooterProject",
         data: () => ({
             links: [
+                // '2024 Vuetify'
                 'Home',
                 'Contact Us'
             ],
@@ -34,5 +35,9 @@
 <style scoped>
     v-footer{
         position: fixed;
+    }
+
+    .light-black-footer {
+        background-color: #141414;
     }
 </style>

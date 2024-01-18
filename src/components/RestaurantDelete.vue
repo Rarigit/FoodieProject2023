@@ -2,8 +2,9 @@
     <div>
         <v-container>
             <h2>Restaurant Log-Out</h2>
+            <br>
             <v-btn class="mx-auto styleButton"
-            @click="deleteStore">Store Logout
+            @click="deleteStore">Delete Restaurant
             </v-btn>
         </v-container>
     </div>

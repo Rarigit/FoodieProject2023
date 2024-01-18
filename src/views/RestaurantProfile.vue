@@ -37,7 +37,15 @@
         </v-row>
         <br>
         <br>
-        <RestaurantUpdate/>
+        <v-card class="restCard">
+            <RestaurantUpdate/>
+        </v-card>
+        <!-- <RestaurantUpdate/> -->
+        <br>
+        <br>
+        <v-card class="restCard">
+            <RestaurantDelete/>
+        </v-card>
         <br>
         <br>
         <v-row>
@@ -45,13 +53,7 @@
         </v-row>
         <br>
         <br>
-        <RestaurantDelete/>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <!-- <RestaurantDelete/> -->
         <br>
         <br>
         <br>
@@ -138,5 +140,11 @@ import FooterProject from "@/components/FooterProject.vue";
     }
 .restImage{
     width: 15vw;
+}
+.restCard{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHTDwhpx0B-NbeRBjbYpojpEgXb1eRcLOzgA&usqp=CAU");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 </style>
