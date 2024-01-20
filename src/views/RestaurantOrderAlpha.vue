@@ -29,7 +29,7 @@
                     <h2 class="mx-auto">Order Time: {{order.createdAt}}</h2>
                     <h2 class="mx-auto">Order Cancel: {{order.isCancelled}}</h2>
                     <!-- <h2 class="mx-auto">Order Complete: {{order.isComplete}}</h2> -->
-                    <h2 class="mx-auto">Order Confirm: {{order.isConfirmed}}</h2>
+                    <h2 class="mx-auto">Order Complete: {{order.isComplete}}</h2>
                     <h2 class="mx-auto">Order Id: {{order.orderId}}</h2>
                     <!-- <h2 class="mx-auto">Store Id: {{order.restaurantId}}</h2> -->
                     <br>
@@ -81,7 +81,8 @@ import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue";
             return {
                 // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
-                restaurantToken: cookies.get('restaurantToken'),
+                token: cookies.get('restaurantToken'),
+                restaurantID: cookies.get('restaurantID'),
                 orders: [],
                 alignments: [
                     'start',
@@ -103,7 +104,8 @@ import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue";
                 url: this.url + "/order-restaurant",
                 headers: {
                     // 'x-api-key' : process.env.VUE_APP_API_KEY,
-                    'token': cookies.get('restaurantToken'),
+                    token: cookies.get('restaurantToken'),
+                    restaurantID: cookies.get('restaurantID')
                 },                                      
                 }).then((response)=>{
                 console.log(response);

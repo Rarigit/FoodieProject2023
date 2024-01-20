@@ -16,6 +16,7 @@
                     <v-text-field class="mx-auto"
                     v-model="orderId"
                     label="Enter orderId"
+                    type="number"
                     prepend-icon="mdi-mouse"
                     />
                     <v-switch
@@ -53,9 +54,10 @@ import cookies from "vue-cookies";
                 // apiKey: process.env.VUE_APP_API_KEY,
                 url: process.env.VUE_APP_API_URL,
                 restaurantToken: cookies.get('restaurantToken'),
-                restaurantId: cookies.get('restaurantId'),
+                restaurantId: cookies.get('restaurantID'),
                 orderId: "",
-                // confirmOrder: true,
+                // orderId: cookies.get('orderId'),
+                confirmOrder: 0,
                 completeOrder: true,//Can only have either confirm or complete.
             }
         },
@@ -67,13 +69,14 @@ import cookies from "vue-cookies";
                     method : "PATCH",
                     url: this.url + "/order-restaurant",
                     headers: {
-                        'token' : cookies.get('restaurantToken'),
+                        token : cookies.get('restaurantToken'),
+                        restaurantId: cookies.get('restaurantID')
                         // 'x-api-key' : process.env.VUE_APP_API_KEY,
                     },
                     data : {
                         orderId: this.orderId,
-                        restaurantId: this.restaurantId,
-                        // confirmOrder: this.confirmOrder,
+                        // restaurantId: this.restaurantId,
+                        confirmOrder: this.confirmOrder,
                         completeOrder: isCompleteConverted
                     }
                     }).then((response)=>{
