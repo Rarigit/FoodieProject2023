@@ -11,6 +11,14 @@
         <h3>Complete Client Order</h3>
             <br>
             <br>
+            <v-alert
+                type="error"
+                v-model="showAlert"
+                dismissible
+            >
+                {{ alertMessage }}
+            </v-alert>
+            <br>
             <v-form>
                 <v-row>
                     <v-text-field class="mx-auto"
@@ -26,8 +34,8 @@
                         :value="completeOrder"
                         color="red"
                     ></v-switch>
-                    <!-- <v-spacer></v-spacer>
-                    <v-text-field class="mx-auto"
+                    <v-spacer></v-spacer>
+                    <!-- <v-text-field class="mx-auto"
                     v-model="confirmOrder"
                     label="Enter (True/False)"
                     prepend-icon="mdi-pen"
@@ -57,8 +65,10 @@ import cookies from "vue-cookies";
                 restaurantId: cookies.get('restaurantID'),
                 orderId: "",
                 // orderId: cookies.get('orderId'),
-                confirmOrder: 0,
+                // confirmOrder: 0,//This line was fucking up the DB update even tho I got a 200. All g now.
                 completeOrder: true,//Can only have either confirm or complete.
+                alertMessage: "",
+                showAlert: false
             }
         },
         methods: {
@@ -76,16 +86,27 @@ import cookies from "vue-cookies";
                     data : {
                         orderId: this.orderId,
                         // restaurantId: this.restaurantId,
-                        confirmOrder: this.confirmOrder,
+                        // confirmOrder: this.confirmOrder,
                         completeOrder: isCompleteConverted
                     }
                     }).then((response)=>{
                     console.log(response);
                     console.log("Order status confirmed");
-                    alert('Order Status Confirmed!')
+                    this.alertMessage = 'Restaurant Order confirmed!';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
+                    window.location.reload();
                     }).catch((error)=>{
                     console.log(error);
-                    alert('Failed edit');
+                    this.alertMessage = 'Failed to complete restaurant order. Try again.';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
                     })
             }
         },
