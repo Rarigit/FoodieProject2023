@@ -14,7 +14,7 @@
                                                     <h2>Edit Personal Info.</h2>
                                                     <br>
                                                     <v-text-field
-                                                    v-model="username"
+                                                    v-model="userName"
                                                     label="Username"
                                                     prepend-icon="mdi-account-circle"
                                                     />
@@ -38,6 +38,13 @@
                                                         <v-btn color="green" large class="styleButton" @click="editClient">Save Changes</v-btn>
                                                     </v-row>
                                                     <br>
+                                                    <v-alert
+                                                        type="error"
+                                                        v-model="showAlert"
+                                                        dismissible
+                                                    >
+                                                        {{ alertMessage }}
+                                                    </v-alert>
                                                     <br>
                                                 </v-col>
                                             </v-row>
@@ -83,10 +90,12 @@ import ClientDelete from "@/components/ClientDelete.vue";
             // apiKey: process.env.VUE_APP_API_KEY,
             url: process.env.VUE_APP_API_URL,
             // email: "",
-            username: "",
+            userName: "",
             firstName: "",
             lastName: "",
-            password: ""
+            password: "",
+            alertMessage: "",
+            showAlert: false
         };
     },
     methods: {
@@ -100,7 +109,7 @@ import ClientDelete from "@/components/ClientDelete.vue";
                 },
                 data: {
                     // email: this.email,
-                    username: this.username,
+                    userName: this.userName,
                     firstName: this.firstName,
                     lastName: this.lastName,
                     password: this.password
@@ -108,13 +117,24 @@ import ClientDelete from "@/components/ClientDelete.vue";
             }).then((response) => {
                 console.log(response);
                 console.log("Successful update");
-                alert("User info. updated!!");
+                this.alertMessage = 'Client Profile updated!';
+                this.showAlert = true;
+                //Dismiss the alert after 3 seconds
+                setTimeout(()=> {
+                    this.showAlert = false;
+                }, 3000);
+                window.location.reload();
                 // cookies.remove(`clientToken`)
                 // cookies.remove(`client`)
                 // router.push(`/loginClientHome`)
             }).catch((error) => {
                 console.log(error);
-                alert("Failed edit");
+                this.alertMessage = 'Failed to update client profile. Try again.';
+                this.showAlert = true;
+                //Dismiss the alert after 3 seconds
+                setTimeout(()=> {
+                    this.showAlert = false;
+                }, 3000);
             });
         }
     },

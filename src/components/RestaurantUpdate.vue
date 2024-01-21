@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h2>Edit Restaurant Profile</h2>
+        <h2 class="profileHead">Edit Restaurant Profile</h2>
         <v-container>
-            <v-form>
+            <v-form class="profileHead">
                 <v-text-field
                 v-model="name"
                 label="Store name"
@@ -25,7 +25,7 @@
                 />
                 <v-text-field
                 v-model="email"
-                label="email (NO CHANGE PERMITTED HERE. KEEP EMAIL SAME!!)"
+                label="email (EMAIL CANNOT BE CHANGED!)"
                 prepend-icon="mdi-email"
                 />
                 <v-text-field
@@ -35,10 +35,10 @@
                 />
                 <v-text-field
                 v-model="phoneNum"
-                label="phone"
+                label="phone (XXX-XXX-XXXX)"
                 prepend-icon="mdi-phone"
                 />
-                <v-btn class="mx-auto styleButton" @click="updateRestaurant">Save Changes
+                <v-btn class="mx-auto styleButton blue" @click="updateRestaurant">Save Changes
                 </v-btn>
             </v-form>
         </v-container>
@@ -47,7 +47,7 @@
 
 <script>
 import axios from "axios";
-import router from "@/router";
+// import router from "@/router";
 import cookies from "vue-cookies";
 
     export default {
@@ -85,12 +85,25 @@ import cookies from "vue-cookies";
                     }
                     }).then((response)=>{
                     console.log(response);
-                    alert('Restaurant info. updated!!')
-                    cookies.remove(`restaurantToken`)
-                    cookies.remove(`restaurantID`)
-                    router.push(`/loginRestaurant`)
+                    this.alertMessage = 'Restaurant Update confirmed!';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
+                    window.location.reload();
+                    // alert('Restaurant info. updated!!')
+                    // cookies.remove(`restaurantToken`)
+                    // cookies.remove(`restaurantID`)
+                    // router.push(`/loginRestaurant`)
                     }).catch((error)=>{
                     console.log(error);
+                    this.alertMessage = 'Failed to update restaurant. Try again.';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
                     })
             },
         },
@@ -103,5 +116,12 @@ import cookies from "vue-cookies";
         height: 7vh;
         box-shadow: 2px 2px 3px;
     }
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
 </style>

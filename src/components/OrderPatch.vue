@@ -2,13 +2,20 @@
     <div>
         <v-container>
             <v-row>
-                <h2 class="mx-auto">Order Confirmation</h2>
+                <h2 class="mx-auto">Order Update</h2>
             </v-row>
             <br>
             <br>
         <h3>Do you wish to cancel your Order?</h3>
             <br>
             <br>
+            <v-alert
+                type="error"
+                v-model="showAlert"
+                dismissible
+                >
+                {{ alertMessage }}
+            </v-alert>
             <v-form>
                 <v-row>
                     <v-text-field class="mx-auto"
@@ -54,6 +61,8 @@ import cookies from "vue-cookies";
                 clientId: cookies.get('client'),
                 orderId: cookies.get('orderId'),
                 cancelOrder: false, //Default value as false
+                alertMessage: "",
+                showAlert: false
             }
         },
         methods: {
@@ -76,10 +85,21 @@ import cookies from "vue-cookies";
                     }).then((response)=>{
                     console.log(response);
                     console.log("Order status updated!");
-                    alert('Order Status Updated!')
+                    this.alertMessage = 'Order status Cancelled!';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
+                    window.location.reload();
                     }).catch((error)=>{
                     console.log(error);
-                    alert('Failed edit');
+                    this.alertMessage = 'Failed to cancel your order. Try again.';
+                    this.showAlert = true;
+                    //Dismiss the alert after 3 seconds
+                    setTimeout(()=> {
+                        this.showAlert = false;
+                    }, 3000);
                     })
             }
         },

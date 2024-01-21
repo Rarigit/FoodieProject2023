@@ -19,13 +19,13 @@
                 <v-row>
                     <img class="menuImage" :src="menu.imageUrl" alt="">
                     <br>
-                    <h3 class="mx-auto">{{menu.name}}</h3>
+                    <h4 class="mx-auto rowFont">{{menu.name}}</h4>
                     <br>
-                    <h3 class="mx-auto">{{menu.description}}</h3>
+                    <h4 class="mx-auto rowFont">{{menu.description}}</h4>
                     <br>
-                    <h3 class="mx-auto">${{menu.price}}</h3>
+                    <h4 class="mx-auto rowFont">${{menu.price}}</h4>
                     <br>
-                    <h3 class="mx-auto">MenuId: {{menu.id}}</h3>
+                    <h4 class="mx-auto rowFont">MenuId: {{menu.id}}</h4>
                 </v-row>
             </h2>
             <br>
@@ -97,7 +97,8 @@ import FooterProject from "@/components/FooterProject.vue";
             logOut() {
                 cookies.remove(`restaurantToken`);
                 cookies.remove(`restaurantID`);
-                router.push(`/`);
+                router.push(`/`)
+                window.location.reload();
             },
         },
         mounted () {
@@ -150,7 +151,14 @@ import FooterProject from "@/components/FooterProject.vue";
     background-repeat: no-repeat;
 }
 .profileHead{
-    font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.rowFont{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     color: #072e35;
     text-transform: uppercase;

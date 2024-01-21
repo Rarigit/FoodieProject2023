@@ -84,6 +84,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 client: cookies.get('client'),
                 cart: [],
                 menuCart: [],
+                // imageCart: [],
                 id: "",
                 name: "",
                 description: "",
@@ -92,6 +93,13 @@ import FooterProject from "@/components/FooterProject.vue";
             }
         },
         methods: {
+            // addImage(imageUrl) {
+            //     console.log(imageUrl);
+            //     this.imageCart.push(imageUrl);
+            //     console.log(this.imageCart);
+            //     let imageJson = JSON.stringify(this.imageCart);
+            //     cookies.set('imageCart', imageJson);
+            // },
             addCart(name) {
                 console.log(name);
                 this.cart.push(name);
@@ -134,7 +142,7 @@ import FooterProject from "@/components/FooterProject.vue";
                     // 'name': this.name,
                     // 'description': this.description,
                     // 'price': this.price,
-                    // 'imageUrl': this.imageUrl,
+                    // imageUrl: this.imageUrl,
                     // 'searchCategory': this.searchCategory
                 },
                 }).then((response)=>{

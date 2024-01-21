@@ -4,7 +4,7 @@
         <v-container>
             <br>
             <v-row>
-                <h1 class="mx-auto">Your Orders</h1>
+                <h1 class="mx-auto profileHead">Order(s) Cart</h1>
             </v-row>
             <br>
             <br>
@@ -21,7 +21,7 @@
             <br>
             <br>
             <v-row>
-                <v-btn color="green" large class="mx-auto styleButton" @click="setOrder">Make an Order
+                <v-btn color="green" large class="mx-auto styleButton" @click="setOrder">Confirm Order
                 </v-btn>
                 <br>
                 <br>
@@ -49,6 +49,11 @@
             <v-row>
                 <v-btn router-link to="/orderAlpha" class="mx-auto styleButton" color="blue" large>Get Order Info.</v-btn>
             </v-row>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
             <br>
             <br>
@@ -84,7 +89,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 // clientId: "",
                 // apiKey: process.env.VUE_APP_API_KEY,
                 items: [cookies.get('menuCart')],///Setting the items array needed in the api call to the array of strings gleaned from my cart cookie
-                trolleys: [cookies.get('nameCart')],
+                trolleys: [cookies.get('nameCart'), cookies.get('imageUrl')],
                 token: cookies.get('clientToken'),
                 // order_id: [],
             }   
@@ -126,8 +131,8 @@ import FooterProject from "@/components/FooterProject.vue";
             backStore() {
                 cookies.remove('selectStore');
                 cookies.remove('menuCart');
-                cookies.remove('clientToken');
-                cookies.remove('client');
+                // cookies.remove('clientToken');
+                // cookies.remove('client');
                 cookies.remove('nameCart')
                 router.push('/restPublic');
             },
@@ -138,6 +143,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove('menuCart');
                 cookies.remove('nameCart');
                 router.push(`/`)
+                window.location.reload();
             },
         },
         // mounted () {
@@ -160,4 +166,12 @@ import FooterProject from "@/components/FooterProject.vue";
         height: 7vh;
         box-shadow: 2px 2px 3px;
     }
+
+    .profileHead{
+    font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 </style>

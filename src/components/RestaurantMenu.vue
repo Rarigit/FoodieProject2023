@@ -9,7 +9,7 @@
             >
                 {{ alertMessage }}
             </v-alert>
-            <v-form>
+            <v-form class="headLine">
                 <v-text-field
                 v-model="name"
                 label="name"
@@ -113,7 +113,7 @@ import cookies from "vue-cookies";
         box-shadow: 2px 2px 3px;
     }
 .headLine{
-    font-family: 'Roboto', sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #072e35;
     text-transform: uppercase;

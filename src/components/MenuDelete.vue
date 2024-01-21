@@ -11,12 +11,13 @@
             </v-alert>
             <br>
             <v-text-field
+            class="headLine"
             v-model="menuId"
             label="Enter menuId"
             prepend-icon="mdi-bio"
             />
             <br>
-            <v-btn color="green" large class="styleButton" @click="deleteMenu">Delete Menu 
+            <v-btn color="red" large class="styleButton" @click="deleteMenu">Delete Menu 
             </v-btn>
         </v-container>
     </div>
@@ -86,7 +87,7 @@ import cookies from "vue-cookies";
 }
 
 .headLine{
-    font-family: 'Roboto', sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #072e35;
     text-transform: uppercase;

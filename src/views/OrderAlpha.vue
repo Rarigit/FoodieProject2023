@@ -2,9 +2,10 @@
     <div class="bodyWrap">
         <HeaderProject/>
         <v-container>
-            <h2>SEE YOUR ORDERS</h2>
             <br>
-            <h2>Clients Only</h2>
+            <br>
+            <br>
+            <h2 class="profileHead">Client: {{client}} Orders</h2>
             <br>
             <div v-for="order in orders" :key="order.orderId">
                 <v-container
@@ -100,8 +101,10 @@ import OrderPatch from "@/components/OrderPatch.vue";
                 cookies.remove(`client`);
                 cookies.remove('nameCart');
                 cookies.remove('newCart');
+                cookies.remove('menuCart');
                 cookies.remove('selectStore');
                 router.push(`/`);
+                window.location.reload();
             }
         },
         mounted () {
@@ -144,4 +147,12 @@ import OrderPatch from "@/components/OrderPatch.vue";
         height: 7vh;
         box-shadow: 2px 2px 3px;
     }
+
+.profileHead{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
     <div>
         <v-container>
-            <h2>Restaurant Log-Out</h2>
+            <h2 class="profileHead">Remove your Restaurant</h2>
             <br>
-            <v-btn class="mx-auto styleButton"
+            <v-btn class="mx-auto styleButton red"
             @click="deleteStore">Delete Restaurant
             </v-btn>
         </v-container>
@@ -64,4 +64,11 @@ import cookies from "vue-cookies";
         box-shadow: 2px 2px 3px;
     }
 
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 </style>
