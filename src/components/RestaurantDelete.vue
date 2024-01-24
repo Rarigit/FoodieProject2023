@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-container>
-            <h2 class="profileHead">Remove your Restaurant</h2>
+            <!-- <h2 class="profileHead">Remove your Restaurant</h2> -->
             <br>
             <v-btn class="mx-auto styleButton red"
             @click="deleteStore">Delete Restaurant

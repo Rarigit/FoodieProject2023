@@ -8,7 +8,7 @@
     <br>
     <v-container v-if="!loggedIn">
         <div v-for="client in clients" :key="client.id">
-            <v-row>
+            <v-row class="profileHead">
                 <h2 class="mx-auto">{{client.username}}</h2>
                 <h2 class="mx-auto">{{client.first_name}}</h2>
                 <h2 class="mx-auto">{{client.last_name}}</h2>
@@ -24,9 +24,9 @@
         <br>
         <v-row class="mx-auto">
             <v-spacer></v-spacer>
-            <v-btn class="mx-auto styleButton" @click="logOut">Client Logout</v-btn>
+            <v-btn class="mx-auto styleButton black" @click="logOut">Client Logout</v-btn>
             <v-spacer></v-spacer>
-            <v-btn class="mx-auto styleButton" router-link to="restPublic">See Restaurants</v-btn>
+            <v-btn class="mx-auto styleButton purple" router-link to="restPublic">See Restaurants</v-btn>
             <v-spacer></v-spacer>
         </v-row>
         <br>
@@ -70,6 +70,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove(`client`)
                 router.push(`/`)
                 this.loggedIn = false
+                window.location.reload();
             }
         },
         mounted () {
@@ -106,9 +107,17 @@ import FooterProject from "@/components/FooterProject.vue";
     transform: translateX(-50%);
     z-index: 1;  */
     }
-    .styleButton{
-        color: black;
+.styleButton{
+        color: white;
         height: 7vh;
         box-shadow: 2px 2px 3px;
-    }
+}
+
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.2px;
+}
 </style>

@@ -111,12 +111,13 @@ import cookies from "vue-cookies";
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
 .headLine{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #072e35;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 0.5px;
 }
 </style>

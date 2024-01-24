@@ -11,7 +11,7 @@
                 <br>
                 <h2>Store Id: {{ $route.params.menuId}}</h2>
                 <br>
-                <h2 v-for= "menu, index in menu_alpha" :key="index">
+                <h2 v-for= "menu, index in menu_alpha" :key="index" class="profileHead">
                     <img 
                     :src="menu.imageUrl" alt="">
                     <br>
@@ -25,11 +25,11 @@
                     <br>
                     <br>
                     <v-row>
-                        <v-btn class="mx-auto styleButton" @click="addCart(menu.name)">Select Menu Item
+                        <v-btn class="mx-auto styleButton blue" @click="addCart(menu.name)">Select Menu Item
                         </v-btn>
                         <v-btn color="grey" class="mx-auto styleButton" @click="addMenu(menu.id)">Confirm Selection
                         </v-btn>
-                        <v-btn class="mx-auto styleButton" @click="removeCart(menu.name)">Remove Menu Item 
+                        <v-btn class="mx-auto styleButton red" @click="removeCart(menu.name)">Remove Menu Item 
                         </v-btn>
                         <v-btn color="grey" class="mx-auto styleButton" @click="removeMenu(menu.id)">Confirm Removal
                         </v-btn>
@@ -45,8 +45,11 @@
             <br>
             <br>
             <br>
-            <v-btn class="styleButton" color="red" @click="logOut">LogOut
-            </v-btn>
+            <v-row>
+                <v-btn class="styleButton" color="white" @click="backStores">Back to Restaurants</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn class="styleButton" color="red" @click="logOut">LogOut</v-btn>
+            </v-row>
             <br>
             <br>
             <br>
@@ -127,7 +130,15 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove('menuCart')
                 cookies.remove('selectStore')
                 router.push(`/`);
+                window.location.reload();
             },
+            backStores() {
+                cookies.remove('selectStore')
+                cookies.remove('nameCart')
+                cookies.remove('menuCart')
+                router.push('/restPublic')
+                window.location.reload();
+            }
         },
         mounted () {
             axios.request({
@@ -181,7 +192,7 @@ import FooterProject from "@/components/FooterProject.vue";
 
 
 header {
-    background-color: aqua;
+    background-color: white;
     text-align: right;
     height: 45px;
     font-size: 25px;
@@ -192,9 +203,17 @@ header {
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
 
 .img{
     width: 10vw;
+}
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.2px;
 }
 </style>

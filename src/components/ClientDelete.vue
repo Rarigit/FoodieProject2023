@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-container>
-            <v-btn color="green" large class="styleButton" @click="deleteClient">Delete User</v-btn>
+            <v-btn color="red" large class="styleButton" @click="deleteClient">Delete User</v-btn>
         </v-container>
         <br>
         <v-alert

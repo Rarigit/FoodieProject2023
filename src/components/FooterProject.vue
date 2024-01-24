@@ -1,7 +1,7 @@
 <template>
     <v-footer class="light-black-footer">
     <v-row justify="center" no-gutters>
-        <v-btn
+        <!-- <v-btn
             v-for="link in links"
             :key="link"
             color="bisque"
@@ -10,9 +10,9 @@
             rounded="xl"
         >
             {{ link }}
-        </v-btn>
+        </v-btn> -->
         <v-col class="px-4 py-2 blue text-center w-100" cols="12">
-            {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+            <strong>{{ new Date().getFullYear() }} — Vuetify</strong>
         </v-col>
     </v-row>
 </v-footer>

@@ -21,34 +21,26 @@
             <br>
             <br>
             <v-row>
-                <v-btn color="green" large class="mx-auto styleButton" @click="setOrder">Confirm Order
-                </v-btn>
+                <v-btn color="green" large class="mx-auto styleButton" @click="setOrder">Confirm Order</v-btn>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <v-btn class="mx-auto styleButton" large @click="backStore">Back to Restaurants
-                </v-btn>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <v-btn class="mx-auto styleButton" large color="grey" @click="logOut"> LogOut
-                </v-btn>
-            </v-row>
-            <br>
-            <br>
-            <br>
-            <br>
-            <v-row>
                 <v-btn router-link to="/orderAlpha" class="mx-auto styleButton" color="blue" large>Get Order Info.</v-btn>
+                <br>
+                <v-btn class="mx-auto styleButton" large @click="backStore">Back to Restaurants</v-btn>
+                <br>
+                <v-btn class="mx-auto styleButton" large color="red" @click="logOut"> LogOut</v-btn>
             </v-row>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
             <br>
             <br>
@@ -135,6 +127,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 // cookies.remove('client');
                 cookies.remove('nameCart')
                 router.push('/restPublic');
+                window.location.reload();
             },
             logOut() {
                 cookies.remove('clientToken');
@@ -165,6 +158,7 @@ import FooterProject from "@/components/FooterProject.vue";
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
 
     .profileHead{

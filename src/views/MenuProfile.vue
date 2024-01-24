@@ -11,7 +11,9 @@
             </v-row>
             <br>
             <br>
-            <v-btn router-link to="/restOrderAlpha" class="mx-auto styleButton" large color="red">Go To Client Orders</v-btn>
+            <v-btn router-link to="/restOrderAlpha" class="mx-auto styleButton" large color="blue">Go To Client Orders</v-btn>
+            <br>
+            <br>
             <br>
             <br>
             <br>
@@ -30,6 +32,7 @@
             </h2>
             <br>
             <br>
+            <br>
             <v-card class="menuCard">
                 <RestaurantMenu/>
             </v-card>
@@ -46,6 +49,8 @@
                 <MenuDelete/>
             </v-card>
             <!-- <MenuDelete/> -->
+            <br>
+            <br>
             <br>
             <br>
             <v-row>
@@ -142,6 +147,7 @@ import FooterProject from "@/components/FooterProject.vue";
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
 
 .menuCard{
@@ -161,7 +167,7 @@ import FooterProject from "@/components/FooterProject.vue";
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     color: #072e35;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 0.5px;
 }
 </style>

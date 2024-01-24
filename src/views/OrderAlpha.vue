@@ -7,7 +7,7 @@
             <br>
             <h2 class="profileHead">Client: {{client}} Orders</h2>
             <br>
-            <div v-for="order in orders" :key="order.orderId">
+            <div v-for="order in orders" :key="order.orderId" class="profileHead">
                 <v-container
                     v-for="align in alignments"
                     :key="align"
@@ -149,10 +149,10 @@ import OrderPatch from "@/components/OrderPatch.vue";
     }
 
 .profileHead{
-    font-family: 'Roboto', sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #072e35;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.2px;
 }
 </style>

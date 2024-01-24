@@ -5,7 +5,7 @@
             <h1>Restaurant Order Check</h1>
             <br>
             <br>
-            <div v-for="order in orders" :key="order.orderId">
+            <div v-for="order in orders" :key="order.orderId" class="profileHead">
                 <v-container
                     v-for="align in alignments"
                     :key="align"
@@ -96,6 +96,7 @@ import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue";
                 cookies.remove(`restaurantToken`)
                 cookies.remove(`restaurantID`)
                 router.push(`/`)
+                window.location.reload();
             }
         },
         mounted () {
@@ -132,5 +133,13 @@ import RestaurantOrderPatch from "@/components/RestaurantOrderPatch.vue";
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.2px;
+}
 </style>

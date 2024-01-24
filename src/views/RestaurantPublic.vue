@@ -8,7 +8,7 @@
             <br>
             <h2 v-for="restaurant,index in restaurant_alpha" :key="index">
                     <h3 v-if="restaurant">
-                        <v-row no-gutters>
+                        <v-row no-gutters class="profileHead">
                             <v-col class="d-flex">
                                 <br>
                                 <!-- I only need image, address and city. Make it look like a card like Skip does it. Too much unnecessary info-->
@@ -41,7 +41,7 @@
             <br>
             <br>
             <v-row>
-                <v-btn class="mx-auto styleButton" large @click="logOut">Return Home</v-btn> 
+                <v-btn class="mx-auto styleButton red" large @click="logOut">Return Home</v-btn> 
             </v-row>
             <br>
             <br>
@@ -89,7 +89,8 @@ import FooterProject from "@/components/FooterProject.vue";
             logOut() {
                 cookies.remove(`clientToken`)
                 cookies.remove(`client`)
-                router.push(`/`);         
+                router.push(`/`);
+                window.location.reload();         
             },
         },
         mounted () {
@@ -135,9 +136,18 @@ import FooterProject from "@/components/FooterProject.vue";
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
 .storeImage{
     width: 15vw;
+}
+
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.2px;
 }
 
 </style>

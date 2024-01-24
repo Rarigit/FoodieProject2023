@@ -13,7 +13,7 @@
         <br>
             <h2 v-for="restaurant,restaurantId in restaurants" :key="restaurantId">
                 <h3 v-if="restaurantID">
-                    <v-row>
+                    <v-row class="profileHead">
                         <img class="restImage" :src="restaurant.bannerUrl" alt="Picture">
                         <br>
                         <h4 class="mx-auto">{{restaurant.name}}</h4>
@@ -33,27 +33,20 @@
         <br>
         <br>
         <v-row>
-            <v-btn class="mx-auto styleButton" router-link to="/menuProfile">Go to Menus</v-btn>
+            <v-btn class="mx-auto styleButton grey" router-link to="/menuProfile">Go to Menus</v-btn>
         </v-row>
         <br>
         <br>
-        <v-card class="restCard">
-            <RestaurantUpdate/>
-        </v-card>
-        <!-- <RestaurantUpdate/> -->
+        <RestaurantUpdate/>
         <br>
         <br>
-        <v-card class="restCard">
-            <RestaurantDelete/>
-        </v-card>
         <br>
         <br>
         <v-row>
-            <v-btn color="green" large class="mx-auto styleButton" @click="logOut">Client Logout</v-btn>
+            <v-btn color="green" large class="mx-auto styleButton" @click="logOut">Store Logout</v-btn>
         </v-row>
         <br>
         <br>
-        <!-- <RestaurantDelete/> -->
         <br>
         <br>
         <br>
@@ -67,7 +60,7 @@ import cookies from "vue-cookies";
 import axios from "axios";
 import router from '@/router';
 import RestaurantUpdate from "@/components/RestaurantUpdate.vue";
-import RestaurantDelete from "@/components/RestaurantDelete.vue";
+// import RestaurantDelete from "@/components/RestaurantDelete.vue";
 import HeaderProject from "@/components/HeaderProject.vue";
 import FooterProject from "@/components/FooterProject.vue";
 
@@ -75,7 +68,7 @@ import FooterProject from "@/components/FooterProject.vue";
         name: "RestaurantProfile",
         components: {
             RestaurantUpdate,
-            RestaurantDelete,
+            // RestaurantDelete,
             HeaderProject,
             FooterProject,
         },
@@ -94,6 +87,7 @@ import FooterProject from "@/components/FooterProject.vue";
                 cookies.remove(`restaurantToken`)
                 cookies.remove(`restaurantID`)
                 router.push(`/`);
+                window.location.reload();
             }
         },
         mounted () {
@@ -137,14 +131,23 @@ import FooterProject from "@/components/FooterProject.vue";
         color: black;
         height: 7vh;
         box-shadow: 2px 2px 3px;
+        font-weight: bold;
     }
 .restImage{
     width: 15vw;
 }
-.restCard{
+/* .restCard{
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHTDwhpx0B-NbeRBjbYpojpEgXb1eRcLOzgA&usqp=CAU");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+} */
+
+.profileHead{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #072e35;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.2px;
 }
 </style>
